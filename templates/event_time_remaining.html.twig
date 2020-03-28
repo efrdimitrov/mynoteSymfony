@@ -3,7 +3,7 @@
 {% set date_next_year = event_date | date('d.m.') ~ next_year %}
 {% set event_date_last_month = event_date|date_modify("-1 month")|date("d.m.Y") %}
 
-{# именден дни и ежегодни #}
+{# named days and annuals #}
     {% if event.category == 'именден' or event.category == 'ежегодни' %}
         {% if date_event_current_year | date('U', timezone="Europe/Sofia") > "now" | date('U', timezone="Europe/Sofia") %}
             {% set event_date = date_event_current_year %}
