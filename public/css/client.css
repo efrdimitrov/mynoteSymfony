@@ -1,0 +1,102 @@
+.add-client {
+    width: 58.8em;
+    margin: 10px auto 0 auto;
+    background: rgba(103, 143, 86, 0.44);
+    padding: 0.5em;
+    border-radius: 0.3em;
+    border: 1px solid;
+}
+
+.add-client-name,
+.add-client-zone,
+.add-client-region,
+.add-client-save,
+.add-client-address,
+.client-save,
+.client,
+.client-name,
+.client-zone,
+.client-region,
+.client-address {
+    margin: 0.2em;
+    border-radius: 0.3em;
+    border: 1px solid;
+    padding-left: 0.3em;
+}
+
+.add-client-name {
+    width: 30em;
+}
+
+.add-client-address {
+    width: 56.9em;
+}
+
+.add-client-region{
+    width: 12em;
+}
+
+.add-client-save {
+    background: rgba(84, 103, 0, 0.46);
+    padding: 0 2em;
+    color: #bbeeda;
+    cursor: pointer;
+    margin: -0.3em 0.5em;
+}
+
+.client {
+    display: grid;
+    width: 80em;
+    margin: 10px auto 0 auto;
+    background: rgba(181, 143, 4, 0.19);
+}
+
+.client-name {
+    grid-column: 1 / span 2;
+    grid-row: 1;
+    width: 21.3em;
+}
+
+.client-region{
+    width: 12.9em;
+}
+
+.client-zone {
+    width: 8em;
+}
+
+.client-address {
+    grid-column: 3;
+    grid-row: 1 / span 2;
+    width: 55em;
+}
+
+.client-save{
+    grid-column: 4;
+    grid-row: 1 / span 2;
+    padding: 1em;
+    cursor: pointer;
+    background: rgba(154, 181, 154, 0.67);
+}
+
+.search {
+    padding: 0.5em;
+    background: rgba(208, 208, 0, 0.21);
+    width: 42em;
+    margin: 1em auto;
+}
+
+.search-client,
+.search-address {
+    display: inline-block;
+}
+
+.search-client {
+    padding-right: 2em;
+}
+
+.search-address-btn,
+.search-client-btn {
+    background: rgba(174, 158, 21, 0.36);
+    padding: 0 0.4em;
+}
