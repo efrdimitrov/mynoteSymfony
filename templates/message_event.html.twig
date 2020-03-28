@@ -13,33 +13,36 @@
         {% endif %}
 
         {% if diff_days >= -1 and (diff_days <= 2 or days_remaining >= diff_days - year_is_leap) %}
-            <section>
-                <div class="name">
+            <div class="message">
+                <div class="message-name">
                     {{ view_event.name }}
                 </div>
                 <div class="date">
-                    {{ view_event.date|date('d.m.Y') }}
+                    {% if view_event.date|date('Y') == 1900 %}
+                        {{ view_event.date|date('d.m') }}
+                    {% else %}
+                        {{ view_event.date|date('d.m.Y') }}
+                    {% endif %}
                 </div>
-                <div class="">
-                    {% if diff_days == 2 %}
-                        {{ 'вдругиден на' }}
+                <div class="message-much-time">
+                    {% if "now"|date('m-d') == view_event.date|date('m-d') %}
+                        {{ 'днес' }}
+                    {% elseif diff_days == 2 %}
+                        {{ 'вдругиден' }}
                     {% elseif diff_days == 1 %}
-                        {{ 'утре на' }}
+                        {{ 'утре' }}
                     {% elseif diff_days == -1 %}
-                        {{ 'вчера на' }}
+                        {{ 'вчера' }}
                     {% endif %}
 
                     {% if age > 0 and view_event.date|date('Y') != 1900 %}
                         {{ age }}г.
-                    {% elseif diff_days > 0 %}
+                    {% elseif diff_days > 0 and view_event.daysRemaining > 0 %}
                         {% set real_diff_days = diff_days - year_is_leap %}
                         {{ 'остават: ' ~ real_diff_days ~ 'дни' }} ({{ view_event.daysRemaining }})
                     {% endif %}
-                    {% if "now"|date('m-d') == view_event.date|date('m-d') %}
-                        {{ 'днес' }}
-                    {% endif %}
                 </div>
-            </section>
+            </div>
         {% endif %}
     {% endfor %}
 {% endblock %}
