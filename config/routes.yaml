@@ -1,0 +1,5 @@
+hello_page:
+  path: /hello_page
+  controller: Symfony\Bundle\FrameworkBundle\Controller\TemplateController::templateAction
+  defaults:
+      template: 'hello_page.html.twig'
