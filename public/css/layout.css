@@ -4,19 +4,8 @@
     background: #F0F0F0;
 }
 
-section {
-    margin: 0.2em auto;
-    background: rgba(224, 238, 182, 0.74);
-}
-
-section > div {
-    color: #1b1e21;
-    display: inline-block;
-    padding: 0.3em;
-}
-
 button,
-section,
+.message,
 .add,
 .add-event,
 .event,
@@ -32,7 +21,7 @@ section,
     border: 1px solid #000;
 }
 
-section,
+.message,
 .add,
 .telephone {
     width: 51.5em;
@@ -49,6 +38,25 @@ section,
 .hide {
     width: 20px;
     height: 20px;
+}
+
+.message {
+    margin: 0.2em auto;
+    background: rgba(224, 238, 182, 0.74);
+    color: #1b1e21;
+    padding: 0.3em;
+}
+
+.message > div {
+    display: inline-block;
+}
+
+.message-name {
+    min-width: 27em;
+}
+
+.message-much-time {
+    width: 15em;
 }
 
 .event-site{
