@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <meta name="theme-color" content="#DAF7A6"> {#    color chrome mobile#}
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+
+    <link rel="icon" type="image/x-icon" href="{{ asset('img/favicon.ico') }}"/>
+
+    <link rel="stylesheet" href="{{ asset('css/site.css') }}" type="text/css">
+
+    <title>{% block title %} Събития {% endblock %}</title>
+
+</head>
+<body>
+{% if app.user %}
+    {% set current_page_event = 'li' %}
+    {% set current_page_note = 'li' %}
+    {% set current_page_client = 'li' %}
+    {% if app.request.get('_route') == 'events' %}
+        {% set current_page_event = 'site-nav-current-page-event' %}
+    {% elseif app.request.get('_route') == 'notes' %}
+        {% set current_page_note = 'site-nav-current-page-note' %}
+    {% elseif app.request.get('_route') == 'clients' %}
+        {% set current_page_client = 'site-nav-current-page-client' %}
+    {% endif %}
+    <div class="site">
+        <nav class="site-nav">
+            <ul>
+                <li class="{{ current_page_event }}">
+                    <a href="{{ path('events') }}">СЪБИТИЯ</a>
+                </li>
+                <li class="{{ current_page_note }}">
+                    <a href="{{ path('notes') }}">БЕЛЕЖКИ</a>
+                </li>
+                <li class="{{ current_page_client }}">
+                    <a href="{{ path('clients') }}">КЛИЕНТИ</a>
+                </li>
+            </ul>
+        </nav>
+        <div style="padding: 25px"></div>
+        {% if app.user %}
+            <a class="logout-btn" href="{{ path('security_logout') }}">LOGOUT</a>
+        {% endif %}
+
+        {{ include('message_event.html.twig') }}
+        {{ include('telephone.html.twig') }}
+
+        {% block body %}
+        {% endblock %}
+
+        {% block javascripts %}
+
+        {% endblock %}
+    </div>
+{% else %}
+    <a href="{{ path('login') }}">
+        LOGIN
+    </a>
+{% endif %}
+</body>
+</html>

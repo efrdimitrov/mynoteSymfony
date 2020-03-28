@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Бележки{% endblock %}
+
+{% block body %}
+    {% for note in notes %}
+
+        <form class="note" action="{{ path('edit_note', {id: note.id}) }}) }}" method="post">
+            <button typpe="submit" class="note-title">{{ note.title }}</button>
+            {% set id = note.id %}
+            <textarea rows="1" id="id" class="note-area" name="note[content]">{{ note.content }}</textarea>
+            <input type="hidden" name="note[change_date]" value="{{ "now" | date('U') }}">
+        </form>
+
+    {% endfor %}
+
+    <div class="other-notes">
+        {% for other_note in others_notes %}
+            <span style="width: 100%; min-height: auto; box-sizing: content-box;
+  resize: none;" name="other_note[content]" id="span">{{ other_note.content }}</span><br>
+        {% endfor %}
+    </div>
+
+{% endblock %}
+
+{% block javascripts %}
+    <script>
+        $(function () {
+            $("textarea").each(function () {
+                this.style.height = (this.scrollHeight + 5) + 'px';
+            });
+        });
+
+        $(function () {
+            let $textareas = $('textarea');
+            $textareas.on('input', autosize);
+
+            function autosize() {
+                let $this = $(this);
+
+                $this
+                    .css({height: 'auto'})
+                    .css({height: $this.prop('scrollHeight')});
+            }
+        });
+
+    </script>
+{% endblock %}

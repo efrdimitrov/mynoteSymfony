@@ -1,0 +1,42 @@
+
+{#{% extends 'base.html.twig' %}#}
+
+{% block body %}
+
+    <div class="">
+        <div class="">
+            <form name="authenticate" class="" action="{{ path('login') }}" method="post">
+                <fieldset>
+                    <legend>Login Form</legend>
+                    {% for message in app.flashes('success') %}
+                        <div class="">
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                    {% if error %}
+                        <div class="">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                    {% endif %}
+                    <div class="">
+                        <label class="" for="user_email">Username</label>
+                        <div class="">
+                            <input aria-label="" value="{{ user.username|default(null) }}" class="" id="user_username" name="_username">
+                        </div>
+                    </div>
+                    <div class="">
+                        <label class="" for="password">Password</label>
+                        <div class="">
+                            <input type="password" class="" id="password" placeholder="Password" name="_password">
+                        </div>
+                    </div>
+                    <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}"/>
+                    <div class="">
+                        <div class="">
+                            <button name="submit_login" type="submit" class="">Login</button>
+                        </div>
+                    </div>
+
+                </fieldset>
+            </form>
+        </div>
+    </div>
+{% endblock %}	 

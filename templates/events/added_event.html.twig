@@ -1,0 +1,9 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <div class="navbar-form">{{ event.name }}</div>
+    <div class="navbar-form">{{ event.category }}</div>
+    <div class="navbar-form">{{ event.date|date('d.m.Y') }}</div>
+
+{% endblock %}

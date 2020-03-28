@@ -1,0 +1,89 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Събития{% endblock %}
+
+{% block body %}
+    <div class="event-site">
+        <form name="authenticate" action="{{ path('create_event') }}" method="post">
+            <div class="add">
+                <input class="add-name" id="event_name" placeholder="Име" name="event[name]" aria-label="">
+
+                <label for="category">Категория
+                    <select name="event[category]">
+                        {% for category in categories %}
+                            <option>{{ category.name }}</option>
+                        {% endfor %}
+                    </select>
+                </label>
+
+                <label for="category">Дата
+                    <input class="date" type="text" name="event[date]"
+                           value="{{ "now" | date('d.m.Y') }}">
+                </label>
+
+                <label for="category">Предсрочни
+                    <input class="days-remaining" placeholder="дни" type="text"
+                           name="event[days_remaining]">
+                </label>
+
+                <label for="category">Скрит
+                    <input class="hide" type="checkbox" name="event[hidden]" id="category">
+                </label>
+
+                <label for="add_event">
+                    <input class="add-event" type="submit" name="add_event" value="Запиши">
+                </label>
+            </div>
+        </form>
+
+        {% for event in events %}
+
+            {% set eventImg = 'event' %}
+            {% set eventName = 'event-name' %}
+            {% if event.category == 'рожденици' %}
+                {% set eventImg = 'event-birthday' %}
+                {% set eventName = 'event-name-birthday' %}
+            {% elseif event.category == 'именден' %}
+                {% set eventImg = 'event-day' %}
+                {% set eventName = 'event-name-day' %}
+            {% endif %}
+            <form class="{{ eventImg }}" action="{{ path('edit_event', {id: event.id}) }}) }}" method="post"
+                  id="{{ event.id }}">
+                <input class="{{ eventName }}" contenteditable="true" name="event[name]" value="{{ event.name }}"
+                       aria-label=""/>
+                {% set event_date = event.date %}
+                {% if event_date | date('Y') == 1900 or event.category == 'именден' or event.category == 'ежегодни' %}
+                    {% set date = event_date | date('d.m') %}
+                {% else %}
+                    {% set date = event_date | date('d.m.Y') %}
+                {% endif %}
+                <input class="date" type="text" name="event[date]" value="{{ date }}" aria-label=""/>
+                <select name="event[category]" aria-label="">
+                    {% for category in categories %}
+                        {% set selected = '' %}
+                        {% if (category.name) == event.category %}
+                            {% set selected = 'selected' %}
+                        {% endif %}
+                        <option value="{{ category.name }}" {{ selected }}>{{ category.name }}</option>
+                    {% endfor %}
+                </select>
+
+                {{ include('event_time_remaining.html.twig') }}
+
+                <a style="text-decoration:none;" href="{{ path('hide_event', { id: event.id}) }}" title="Скрий"
+                   onclick="return confirm('Скрий {{ event.name }}')">
+                    <img class="hide" alt="Скрий" src="{{ asset('img/hide.png') }}">
+                </a>
+                <input class="days-remaining" name="event[days_remaining]" value="{{ event.daysRemaining }}"
+                       aria-label="">
+                <a class="event-edit" onclick="document.getElementById('{{ event.id }}').submit();">запиши</a>
+                <a class="event-delete" href="{{ path('delete_event', { id: event.id}) }}"
+                   onclick="return confirm('Изтрий {{ event.name }}')">изтрий</a>
+
+            </form>
+        {% endfor %}
+    </div>
+
+    <a style="color: #F0F0F0;" href="{{ path('hidden_events') }}">Скрити</a>
+{% endblock %}
+
