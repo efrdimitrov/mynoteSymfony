@@ -1,0 +1,55 @@
+<?php
+
+namespace App\Controller;
+
+use App\Service\Event\EventService;
+use App\Service\Note\NoteServiceInterface;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
+use Symfony\Component\HttpFoundation\Response;
+
+class SecurityController extends AbstractController
+{
+    /**
+     * @var NoteServiceInterface
+     */
+    private $noteService;
+
+    /**
+     * @var EventService
+     */
+    private $eventService;
+
+    /**
+     * NoteController constructor.
+     * @param NoteServiceInterface $noteService
+     * @param EventService $eventService
+     */
+    public function __construct(NoteServiceInterface $noteService,
+                                EventService $eventService)
+    {
+        $this->noteService = $noteService;
+        $this->eventService = $eventService;
+    }
+
+    /**
+     * @Route("/login", name="login")
+     * @param AuthenticationUtils $utils
+     * @return Response
+     */
+    public function login(AuthenticationUtils $utils)
+    {
+        $error = $utils->getLastAuthenticationError();
+        $lastUsername = $utils->getLastUsername();
+        $viewEvents = $this->eventService->viewEvents();
+        $telephone = $this->eventService->telephone();
+
+        return $this->render('security/login.html.twig', [
+            'error'         => $error,
+            'last_username' => $lastUsername,
+            'view_events'    => $viewEvents,
+            'telephone' => $telephone,
+        ]);
+    }
+}
