@@ -18,7 +18,7 @@
                 <div class="message-name">
                     {{ view_event.name }}
                 </div>
-                <div class="date">
+                <div class="message-date">
                     {% if view_event.date|date('Y') == 1900 %}
                         {{ view_event.date|date('d.m') }}
                     {% else %}

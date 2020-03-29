@@ -52,11 +52,15 @@ button,
 }
 
 .message-name {
-    min-width: 27em;
+    min-width: 45%;
+}
+
+.message-date {
+    width: 20%;
 }
 
 .message-much-time {
-    width: 15em;
+    width: 30%;
 }
 
 .event-site{
