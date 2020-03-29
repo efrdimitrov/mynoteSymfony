@@ -4,7 +4,7 @@
         {% set year_is_leap_event = view_event.date | date('L') %}
         {% set day_of_year_event = view_event.date|date('z') - year_is_leap_event %}
         {% set day_of_year_now = "now"|date('z') %}
-        {% set diff_days = day_of_year_event - day_of_year_now + 1%}
+        {% set diff_days = day_of_year_event - day_of_year_now + 1 %}
 
         {% set age = 'now'|date('Y') - view_event.date|date('Y') %}
         {% set days_remaining = view_event.daysRemaining %}
