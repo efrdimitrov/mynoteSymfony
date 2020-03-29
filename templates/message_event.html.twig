@@ -1,10 +1,11 @@
 {% block body %}
     {% for view_event in view_events %}
 
-        {% set day_of_year_event = view_event.date|date('z') %}
+        {% set year_is_leap_event = view_event.date | date('L') %}
+        {% set day_of_year_event = view_event.date|date('z') - year_is_leap_event %}
         {% set day_of_year_now = "now"|date('z') %}
-        {% set year_is_leap = "now" | date('L') %}
-        {% set diff_days = day_of_year_event - day_of_year_now + year_is_leap %}
+        {% set diff_days = day_of_year_event - day_of_year_now + 1%}
+
         {% set age = 'now'|date('Y') - view_event.date|date('Y') %}
         {% set days_remaining = view_event.daysRemaining %}
 
@@ -12,7 +13,7 @@
             {% set days_remaining = -1 %}
         {% endif %}
 
-        {% if diff_days >= -1 and (diff_days <= 2 or days_remaining >= diff_days - year_is_leap) %}
+        {% if diff_days >= -1 and (diff_days <= 2 or days_remaining >= diff_days - year_is_leap_event) %}
             <div class="message">
                 <div class="message-name">
                     {{ view_event.name }}
@@ -38,8 +39,7 @@
                     {% if age > 0 and view_event.date|date('Y') != 1900 %}
                         {{ age }}г.
                     {% elseif diff_days > 0 and view_event.daysRemaining > 0 %}
-                        {% set real_diff_days = diff_days - year_is_leap %}
-                        {{ 'остават: ' ~ real_diff_days ~ 'дни' }} ({{ view_event.daysRemaining }})
+                        {{ 'остават: ' ~ diff_days ~ 'дни' }} ({{ view_event.daysRemaining }})
                     {% endif %}
                 </div>
             </div>
