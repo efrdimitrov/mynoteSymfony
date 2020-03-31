@@ -200,5 +200,9 @@ label {
 .telephone-button-pay {
     padding: 0 1em;
     background: rgba(191, 254, 46, 0.27);
+    text-decoration: none;
+    color: #051a05;
+    box-shadow: 0 0 6px 0 rgba(0,0,0,0.75);
+    border-radius: 0.3em;
 }
 
