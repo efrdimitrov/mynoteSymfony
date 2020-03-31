@@ -15,7 +15,7 @@
 .site-nav ul {
     padding: 0;
     margin: 0;
-    background-color: #333;
+    /*background-color: #333;*/
 }
 
 .site-nav ul ul {
@@ -54,6 +54,7 @@
     box-shadow: 0 4px 0 -2px #F0F0F0;
     border-right: 2px #1b1e21 solid;
     border-left: 2px #1b1e21 solid;
+    border-top: 2px #1b1e21 solid;
 }
 
 .site-nav li:hover > ul {
@@ -69,6 +70,7 @@
 
 .site-nav li:hover > a,
 .site-nav a:hover {
-    background-color: #9ab59a;
-    color: #fcebb3;
+    /*background-color: #9ab59a;*/
+    color: #719385;
+
 }
