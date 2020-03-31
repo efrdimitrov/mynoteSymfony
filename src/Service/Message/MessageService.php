@@ -1,0 +1,57 @@
+<?php
+
+namespace App\Service\Message;
+
+use Doctrine\ORM\EntityManagerInterface;
+
+class MessageService implements MessageServiceInterface
+{
+
+    /**
+     * @var EntityManagerInterface
+     */
+    private $entityManager;
+
+    /**
+     * MessageService constructor.
+     * @param EntityManagerInterface $entityManager
+     */
+    public function __construct(EntityManagerInterface $entityManager)
+    {
+        $this->entityManager = $entityManager;
+    }
+
+    /**
+     * @throws \Exception
+     */
+    public function pay_by_telephone()
+    {
+        $telephone = $this->telephone();
+        $getIdPhone = $telephone[0]->getId();
+        $dateTelephone = $telephone[0]->getDate();
+        $dateTelephone = $dateTelephone->format('Y-m-d');
+        $dateNow = new \DateTime('now');
+        $dateNow = $dateNow->format('Y-m-d');
+
+        if (strtotime($dateTelephone) < strtotime($dateNow) and $this->$telephone[0]->getCategory() == 'платен') {
+            $query = $this->entityManager->createQuery("
+            UPDATE App\Entity\Event e 
+            SET e.category = 'неплатен' 
+            WHERE e.id = :id "
+            )->setParameter('id', $getIdPhone);
+            $query->getResult();
+        }
+    }
+
+    /**
+     * @return mixed
+     */
+    public function telephone()
+    {
+        return $this->entityManager->createQuery("
+            SELECT e FROM App\Entity\Event e
+            WHERE e.name = 'telephone'
+        ")
+            ->getResult();
+    }
+}

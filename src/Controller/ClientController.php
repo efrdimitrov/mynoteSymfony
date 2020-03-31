@@ -6,6 +6,7 @@ use App\Entity\Client;
 use App\Form\ClientType;
 use App\Service\Client\ClientServiceInterface;
 use App\Service\Event\EventService;
+use App\Service\Message\MessageServiceInterface;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -31,18 +32,26 @@ class ClientController extends AbstractController
     private $entityManager;
 
     /**
+     * @var MessageServiceInterface
+     */
+    private $messageService;
+
+    /**
      * ClientServiceInterface constructor.
      * @param ClientServiceInterface $clientService
      * @param EventService $eventService
      * @param EntityManagerInterface $entityManager
+     * @param MessageServiceInterface $messageService
      */
     public function __construct(EventService $eventService,
                                 ClientServiceInterface $clientService,
-                                EntityManagerInterface $entityManager)
+                                EntityManagerInterface $entityManager,
+                                MessageServiceInterface $messageService)
     {
         $this->clientService = $clientService;
         $this->eventService = $eventService;
         $this->entityManager = $entityManager;
+        $this->messageService = $messageService;
     }
 
     /**
@@ -52,7 +61,7 @@ class ClientController extends AbstractController
     {
         $clients = $this->clientService->allClients();
         $viewEvents = $this->eventService->viewEvents();
-        $telephone = $this->eventService->telephone();
+        $telephone = $this->messageService->telephone();
 
         return $this->render('clients/clients.html.twig', [
             'clients' => $clients,
@@ -74,7 +83,7 @@ class ClientController extends AbstractController
         $this->clientService->save($client);
         $clients = $this->clientService->allClients();
         $viewEvents = $this->eventService->viewEvents();
-        $telephone = $this->eventService->telephone();
+        $telephone = $this->messageService->telephone();
 
 
         return $this->render('clients/clients.html.twig',
