@@ -74,14 +74,14 @@ class EventController extends AbstractController
      * @param Request $request
      * @return Response
      */
-    public function create_event(Request $request)
+    public function createEvent(Request $request)
     {
         $event = new Event();
         $form = $this->createForm(EventType::class, $event);
         $form->handleRequest($request);
         $this->eventService->save($event);
         $events = $this->eventService->getAll();
-        $viewEvents = $this->eventService->viewEvents();
+        $viewEvents = $this->messageService->viewEvents();
         $telephone = $this->messageService->telephone();
 
         return $this->render('events/added_event.html.twig',
@@ -101,11 +101,10 @@ class EventController extends AbstractController
      */
     public function events()
     {
-        $this->messageService->pay_by_telephone();
-
+        $this->messageService->newPhoneBill();
         $events = $this->eventService->queryEvent();
         $categories = $this->categoryService->getAll();
-        $viewEvents = $this->eventService->viewEvents();
+        $viewEvents = $this->messageService->viewEvents();
         $telephone = $this->messageService->telephone();
 
         return $this->render("events/events.html.twig",
@@ -139,7 +138,7 @@ class EventController extends AbstractController
             ->getDoctrine()
             ->getRepository(Category::class);
         $categories = $categoryRepository->findAll();
-        $viewEvents = $this->eventService->viewEvents();
+        $viewEvents = $this->messageService->viewEvents();
         $telephone = $this->messageService->telephone();
         return $this->render('events/events.html.twig',
             [
@@ -166,13 +165,13 @@ class EventController extends AbstractController
     }
 
     /**
-     * @Route("/hidden_events", name="hidden_events")
+     * @Route("/hidden_events_page", name="hidden_events_page")
      */
-    public function hidden_events()
+    public function hiddenEventsPage()
     {
         $hiddenEvents = $this->eventService->hiddenEvents();
         $categories = $this->categoryService->getAll();
-        $viewEvents = $this->eventService->viewEvents();
+        $viewEvents = $this->messageService->viewEvents();
         $telephone = $this->messageService->telephone();
 
         return $this->render("events/events.html.twig",
@@ -190,15 +189,9 @@ class EventController extends AbstractController
      * @param int $id
      * @return Response
      */
-    public function hide_event(int $id)
+    public function hideEvent(int $id)
     {
-        $this->entityManager->createQuery("
-            UPDATE App\Entity\Event e 
-            SET e.hidden = '1' 
-            WHERE e.id = :id")
-            ->setParameter('id', $id)
-            ->getResult();
-
+        $this->eventService->hideEventProcess($id);
         return $this->redirectToRoute("events");
     }
 

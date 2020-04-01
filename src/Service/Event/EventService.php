@@ -11,8 +11,6 @@ use Doctrine\ORM\Query\ResultSetMapping;
 
 class EventService implements EventServiceInterface
 {
-
-
     /**
      * @var EventRepository
      */
@@ -65,32 +63,6 @@ class EventService implements EventServiceInterface
     /**
      * @return mixed
      */
-    public function viewEvents()
-    {
-        return $this->entityManager->createQuery("
-            SELECT e FROM App\Entity\Event e
-            WHERE e.hidden != '1' and YEAR(e.date) <= YEAR(CURRENT_DATE()) + 0.2
-            ORDER BY Month(e.date), Day(e.date)
-  
-        ")
-            ->getResult();
-    }
-
-    /**
-     * @return mixed
-     */
-    public function telephone()
-    {
-        return $this->entityManager->createQuery("
-            SELECT e FROM App\Entity\Event e
-            WHERE e.name = 'telephone'
-        ")
-            ->getResult();
-    }
-
-    /**
-     * @return mixed
-     */
     public function queryEvent()
     {
         $rsm = new ResultSetMapping;
@@ -111,7 +83,6 @@ class EventService implements EventServiceInterface
         DAYOFYEAR(DATE_ADD(date, INTERVAL (YEAR(NOW()) - YEAR(date)) YEAR))
         ", $rsm);
 
-
         return $events = $query->getResult();
     }
 
@@ -126,4 +97,18 @@ class EventService implements EventServiceInterface
         ")
             ->getResult();
     }
+    
+    /**
+    * @param int $id
+    */
+    public function hideEventProcess(int $id)
+    {
+        $this->entityManager->createQuery("
+            UPDATE App\Entity\Event e 
+            SET e.hidden = '1' 
+            WHERE e.id = :id")
+            ->setParameter('id', $id)
+            ->getResult();
+    }
+
 }

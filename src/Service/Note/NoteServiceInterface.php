@@ -7,4 +7,5 @@ interface NoteServiceInterface
 {
     public function mainNotes(): array;
     public function othersNotes(): array;
+    public function allMainNotes();
 }

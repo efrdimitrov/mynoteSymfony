@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Client;
 use App\Service\Client\ClientServiceInterface;
+use App\Service\Message\MessageServiceInterface;
 use App\Service\Event\EventService;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -27,20 +28,28 @@ class SearchController extends AbstractController
      * @var EntityManagerInterface
      */
     private $entityManager;
+     
+    /**
+     * @var MessageServiceInterface
+     */
+    private $messageService;
 
     /**
      * ClientServiceInterface constructor.
      * @param ClientServiceInterface $clientService
      * @param EventService $eventService
      * @param EntityManagerInterface $entityManager
+     * @param MessageServiceInterface $messageService
      */
     public function __construct(EventService $eventService,
                                 ClientServiceInterface $clientService,
-                                EntityManagerInterface $entityManager)
+                                EntityManagerInterface $entityManager,
+                                MessageServiceInterface $messageService)
     {
         $this->clientService = $clientService;
         $this->eventService = $eventService;
         $this->entityManager = $entityManager;
+        $this->messageService = $messageService;
     }
 
 
@@ -54,8 +63,8 @@ class SearchController extends AbstractController
         $searchClients = $request->query->get('search_clients');
         $clients = $this->entityManager->getRepository(Client::class)->findByClients($searchClients);
 
-        $viewEvents = $this->eventService->viewEvents();
-        $telephone = $this->eventService->telephone();
+        $viewEvents = $this->messageService->viewEvents();
+        $telephone = $this->messageService->telephone();
 
         return $this->render('clients/clients.html.twig', [
             'clients' => $clients,
@@ -76,8 +85,8 @@ class SearchController extends AbstractController
         $searchAddress = $request->query->get('search_address');
         $clients = $this->entityManager->getRepository(Client::class)->findByAddress($searchAddress);
 
-        $viewEvents = $this->eventService->viewEvents();
-        $telephone = $this->eventService->telephone();
+        $viewEvents = $this->messageService->viewEvents();
+        $telephone = $this->messageService->telephone();
 
         return $this->render('clients/clients.html.twig', [
             'clients' => $clients,

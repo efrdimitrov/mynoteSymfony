@@ -19,11 +19,10 @@ interface EventServiceInterface
 
     public function save(Event $event);
 
-    public function viewEvents();
-
-    public function telephone();
-
     public function queryEvent();
 
     public function hiddenEvents();
+    
+    public function hideEventProcess(int $id);
+
 }

@@ -2,6 +2,7 @@
 
 namespace App\Service\Message;
 
+use App\Entity\Event;
 use Doctrine\ORM\EntityManagerInterface;
 
 class MessageService implements MessageServiceInterface
@@ -24,7 +25,7 @@ class MessageService implements MessageServiceInterface
     /**
      * @throws \Exception
      */
-    public function pay_by_telephone()
+    public function newPhoneBill()
     {
         $telephone = $this->telephone();
         $getIdPhone = $telephone[0]->getId();
@@ -54,4 +55,37 @@ class MessageService implements MessageServiceInterface
         ")
             ->getResult();
     }
+
+    /**
+     * @param int $id
+     * @param Event $event
+     */
+    public function payTelephoneProcess(int $id, Event $event)
+    {
+        $date = $event->getDate();
+        $date->modify('+1 month');
+        $nextDate = $date->format('Y-m-d');
+
+        $this->entityManager->createQuery("
+            UPDATE App\Entity\Event e 
+            SET e.category = 'платен', e.date = '$nextDate'
+            WHERE e.id = :id")
+            ->setParameter('id', $id)
+            ->getResult();
+    }
+
+    /**
+     * @return mixed
+     */
+    public function viewEvents()
+    {
+        return $this->entityManager->createQuery("
+            SELECT e FROM App\Entity\Event e
+            WHERE e.hidden != '1' and YEAR(e.date) <= YEAR(CURRENT_DATE()) + 0.2
+            ORDER BY Month(e.date), Day(e.date)
+        ")
+            ->getResult();
+    }
+
+
 }

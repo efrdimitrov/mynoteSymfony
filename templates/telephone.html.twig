@@ -1,12 +1,13 @@
 {% block body %}
     {% set days_remaining = "now" | date('t') - "now" | date('j') + 8 %}
     {% set category = telephone[0].getCategory %}
-    {% if("now" | date('j') >= 9 and category == 'неплатен') %}
+    {% set date_telephone = telephone[0].getDate | date('U') %}
+    {% if("now" | date('j') >= 9 and category == 'неплатен' and "now" | date('U') > date_telephone ) %}
         <article>
-            <form method="post" onSubmit="window.location.reload()" class="telephone">
+            <form method="post" class="telephone">
                 {{ 'Виваком' }}
-                {{ 'остават: ' ~ days_remaining ~ ' дни' }}
-                <button class="telephone-button-pay" type="submit" name="paymentPhone">плати</button>
+                {{ 'остават: ' ~ days_remaining ~ ' дни  ' }}
+                <a class="telephone-button-pay" href="{{ path('pay_telephone', { id: 234}) }}" title="Плати">плати</a>
             </form>
         </article>
     {% endif %}

@@ -57,10 +57,10 @@ class ClientController extends AbstractController
     /**
      * @Route("/clients", name="clients")
      */
-    public function index()
+    public function clients()
     {
         $clients = $this->clientService->allClients();
-        $viewEvents = $this->eventService->viewEvents();
+        $viewEvents = $this->messageService->viewEvents();
         $telephone = $this->messageService->telephone();
 
         return $this->render('clients/clients.html.twig', [
@@ -75,14 +75,14 @@ class ClientController extends AbstractController
      * @param Request $request
      * @return Response
      */
-    public function create_client(Request $request)
+    public function createClient(Request $request)
     {
         $client = new Client();
         $form = $this->createForm(ClientType::class, $client);
         $form->handleRequest($request);
         $this->clientService->save($client);
         $clients = $this->clientService->allClients();
-        $viewEvents = $this->eventService->viewEvents();
+        $viewEvents = $this->messageService->viewEvents();
         $telephone = $this->messageService->telephone();
 
 

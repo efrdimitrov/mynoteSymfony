@@ -2,7 +2,7 @@
 
 namespace App\Controller;
 
-use App\Entity\Event;
+
 use App\Service\Message\MessageServiceInterface;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Routing\Annotation\Route;
@@ -40,23 +40,11 @@ class MessageController extends AbstractController
     /**
      * @Route("/pay_telephone/{id}", name="pay_telephone")
      *
-     * @param int $id
-     * @param Event $event
      * @return Response
      */
-    public function pay_telephone(int $id, Event $event)
+    public function payTelephone()
     {
-        $date = $event->getDate();
-        $date->modify('+1 month');
-        $nextDate = $date->format('Y-m-d');
-
-        $this->entityManager->createQuery("
-            UPDATE App\Entity\Event e 
-            SET e.category = 'платен', e.date = '$nextDate'
-            WHERE e.id = :id")
-            ->setParameter('id', $id)
-            ->getResult();
-
+        $this->messageService->payTelephoneProcess();
         return $this->redirectToRoute("events");
     }
 }

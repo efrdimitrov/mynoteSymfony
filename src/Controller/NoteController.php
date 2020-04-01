@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Service\Event\EventService;
+use App\Service\Message\MessageServiceInterface;
 use App\Service\Note\NoteServiceInterface;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -31,18 +32,26 @@ class NoteController extends AbstractController
     private $entityManager;
 
     /**
+     * @var MessageServiceInterface
+     */
+    private $messageService;
+
+    /**
      * NoteController constructor.
      * @param NoteServiceInterface $noteService
      * @param EventService $eventService
      * @param EntityManagerInterface $entityManager
+     * @param MessageServiceInterface $messageService
      */
     public function __construct(NoteServiceInterface $noteService,
                                 EventService $eventService,
-                                EntityManagerInterface $entityManager)
+                                EntityManagerInterface $entityManager,
+                                MessageServiceInterface $messageService)
     {
         $this->noteService = $noteService;
         $this->eventService = $eventService;
         $this->entityManager = $entityManager;
+        $this->messageService = $messageService;
     }
 
 
@@ -53,15 +62,10 @@ class NoteController extends AbstractController
      */
     public function notes()
     {
-        $query = $this->entityManager->createQuery(
-            "SELECT n FROM App\Entity\Note n WHERE n.title != 'другите' AND n.title != 'тех-ко' 
-            ORDER BY n.change_date DESC"
-        );
-        $mainNotes = $query->getResult();
-
+        $mainNotes = $this->noteService->allMainNotes();
         $events = $this->eventService->queryEvent();
-        $viewEvents = $this->eventService->viewEvents();
-        $telephone = $this->eventService->telephone();
+        $viewEvents = $this->messageService->viewEvents();
+        $telephone = $this->messageService->telephone();
 
         return $this->render("notes/notes.html.twig",
             [
@@ -98,7 +102,6 @@ class NoteController extends AbstractController
         return $this->render("notes/notes.html.twig",
             [
                 'form' => $form->createView(),
-                'note' => $note,
                 'notes' => $notes,
                 'others_notes' => $this->noteService->othersNotes(),
                 'events' => $events,
