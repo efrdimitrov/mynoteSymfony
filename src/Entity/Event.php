@@ -40,7 +40,7 @@ class Event
     /**
      * @ORM\Column(type="boolean", length=255)
      */
-    private $hidden;
+    private $status;
 
     /**
      * @return mixed
@@ -125,17 +125,17 @@ class Event
     /**
      * @return mixed
      */
-    public function getHidden()
+    public function getStatus()
     {
-        return $this->hidden;
+        return $this->status;
     }
 
     /**
-     * @param mixed $hidden
+     * @param mixed $status
      */
-    public function setHidden($hidden): void
+    public function setStatus($status): void
     {
-        $this->hidden = $hidden;
+        $this->status = $status;
     }
 
 

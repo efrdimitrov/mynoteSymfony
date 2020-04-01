@@ -81,7 +81,7 @@ class MessageService implements MessageServiceInterface
     {
         return $this->entityManager->createQuery("
             SELECT e FROM App\Entity\Event e
-            WHERE e.hidden != '1' and YEAR(e.date) <= YEAR(CURRENT_DATE()) + 0.2
+            WHERE e.status != '1' and YEAR(e.date) <= YEAR(CURRENT_DATE()) + 0.2
             ORDER BY Month(e.date), Day(e.date)
         ")
             ->getResult();

@@ -25,7 +25,7 @@ class EventType extends AbstractType
         ->add('days_remaining', NumberType::class,[
             'empty_data' => '0'
         ])
-        ->add('hidden',  CheckboxType::class,[
+        ->add('status',  CheckboxType::class,[
             'attr' => array('checked' => 'checked', 'value' => '1')
         ]);
    }

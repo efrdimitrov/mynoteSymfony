@@ -165,18 +165,18 @@ class EventController extends AbstractController
     }
 
     /**
-     * @Route("/hidden_events_page", name="hidden_events_page")
+     * @Route("/status_events_page", name="status_events_page")
      */
-    public function hiddenEventsPage()
+    public function statusEventsPage()
     {
-        $hiddenEvents = $this->eventService->hiddenEvents();
+        $statusEvents = $this->eventService->statusEvents();
         $categories = $this->categoryService->getAll();
         $viewEvents = $this->messageService->viewEvents();
         $telephone = $this->messageService->telephone();
 
         return $this->render("events/events.html.twig",
             [
-                'events' => $hiddenEvents,
+                'events' => $statusEvents,
                 'categories' => $categories,
                 'view_events' => $viewEvents,
                 'telephone' => $telephone,

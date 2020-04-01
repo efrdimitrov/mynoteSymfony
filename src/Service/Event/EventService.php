@@ -72,12 +72,12 @@ class EventService implements EventServiceInterface
         $rsm->addFieldResult('e', 'date', 'date');
         $rsm->addFieldResult('e', 'category', 'category');
         $rsm->addFieldResult('e', 'days_remaining', 'days_remaining');
-        $rsm->addFieldResult('e', 'hidden', 'hidden');
+        $rsm->addFieldResult('e', 'status', 'status');
 
         $query = $this->entityManager->createNativeQuery("
         SELECT *
         FROM events
-        WHERE hidden != '1' and date <= ( CURRENT_DATE() + INTERVAL + 364 DAY )
+        WHERE status != '2' and date <= ( CURRENT_DATE() + INTERVAL + 364 DAY )
         ORDER BY 
         DAYOFYEAR(DATE_ADD(date, INTERVAL (YEAR(NOW()) - YEAR(date)) YEAR)) < DAYOFYEAR(CURRENT_DATE()),
         DAYOFYEAR(DATE_ADD(date, INTERVAL (YEAR(NOW()) - YEAR(date)) YEAR))
@@ -93,7 +93,7 @@ class EventService implements EventServiceInterface
     {
         return $this->entityManager->createQuery("
             SELECT e FROM App\Entity\Event e
-            WHERE e.hidden = '1'
+            WHERE e.status = '2'
         ")
             ->getResult();
     }
@@ -105,7 +105,7 @@ class EventService implements EventServiceInterface
     {
         $this->entityManager->createQuery("
             UPDATE App\Entity\Event e 
-            SET e.hidden = '1' 
+            SET e.status = '2' 
             WHERE e.id = :id")
             ->setParameter('id', $id)
             ->getResult();
