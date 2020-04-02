@@ -72,7 +72,7 @@
 
                 <a style="text-decoration:none;" href="{{ path('hide_event', { id: event.id}) }}" title="Скрий"
                    onclick="return confirm('Скрий {{ event.name }}')">
-                    <img class="hide" alt="Скрий" src="{{ asset('img/hide.png') }}">
+                    <img class="hide-img" alt="Скрий" src="{{ asset('img/hide.png') }}">
                 </a>
                 <input class="days-remaining" name="event[days_remaining]" value="{{ event.daysRemaining }}"
                        aria-label="">

@@ -78,7 +78,7 @@ class EventService implements EventServiceInterface
         $query = $this->entityManager->createNativeQuery("
         SELECT *
         FROM events
-        WHERE status != '2' and date <= ( CURRENT_DATE() + INTERVAL + 364 DAY )
+        WHERE status = 0 and date <= ( CURRENT_DATE() + INTERVAL + 364 DAY )
         ORDER BY 
         DAYOFYEAR(DATE_ADD(date, INTERVAL (YEAR(NOW()) - YEAR(date)) YEAR)) < DAYOFYEAR(CURRENT_DATE()),
         DAYOFYEAR(DATE_ADD(date, INTERVAL (YEAR(NOW()) - YEAR(date)) YEAR))
@@ -112,4 +112,59 @@ class EventService implements EventServiceInterface
             ->getResult();
     }
 
+    /**
+     * @param int $id
+     * @throws Exception
+     */
+    public function checkedEventProcess(int $id)
+    {
+        $dateNow = new \DateTime('now');
+        $dayOfYearNow = $dateNow->format('z');
+
+        $this->entityManager->createQuery("
+            UPDATE App\Entity\Event e 
+            SET e.status = 1, e.checked = $dayOfYearNow
+            WHERE e.id = :id")
+            ->setParameter('id', $id)
+            ->getResult();
+    }
+
+    public function changeOfStatus()
+    {
+        $status = false;
+        $isChangeStatusEvent = false;
+        if ($this->changeOfStatusEvent()) {
+            $status = $this->changeOfStatusEvent()[0]->getStatus();
+            $checked = $this->changeOfStatusEvent()[0]->getChecked();
+            $daysRemaining = $this->changeOfStatusEvent()[0]->getDaysRemaining();
+            if($daysRemaining == 0){
+                $daysRemaining = 3;
+            }
+            $dateNow = new \DateTime('now');
+            $dayOfYearNow = $dateNow->format('z');
+            $dayOfChangeStatusEvent = $checked + $daysRemaining;
+            $isChangeStatusEvent = $dayOfChangeStatusEvent <= $dayOfYearNow;
+        }
+
+        if ($status and $isChangeStatusEvent) {
+            $query = $this->entityManager->createQuery("
+            UPDATE App\Entity\Event e 
+            SET e.status = 0 
+            WHERE e.status = $status"
+            );
+            $query->getResult();
+        }
+    }
+
+    /**
+     * @return mixed
+     */
+    public function changeOfStatusEvent()
+    {
+        return $this->entityManager->createQuery("
+            SELECT e FROM App\Entity\Event e
+            WHERE e.status = 1 AND e.name != 'telephone'
+        ")
+            ->getResult();
+    }
 }

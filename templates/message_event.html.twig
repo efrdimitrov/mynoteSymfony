@@ -42,6 +42,12 @@
                         {{ 'остават: ' ~ diff_days ~ 'дни' }} ({{ view_event.daysRemaining }})
                     {% endif %}
                 </div>
+                    <a style="text-decoration:none; height: 40px;" href="{{ path('checked_event', { id: view_event.id}) }}"
+                       title="Отметни"
+                       onclick="return confirm('Отметни {{ view_event.name }}')">
+                        <i class="fa fa-check-square" style="font-size:24px;color:green"></i>
+                    </a>
+
 
             </div>
         {% endif %}

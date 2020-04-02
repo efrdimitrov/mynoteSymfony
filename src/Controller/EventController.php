@@ -61,12 +61,15 @@ class EventController extends AbstractController
 
     /**
      * @Route("/events", name="events")
-     * @Route("/", name="index")
+     * @Route("/", name="")
      *
      * @return Response
      */
     public function events()
     {
+        $this->eventService->changeOfStatus();
+
+
 
         $this->messageService->newPhoneBill();
         $events = $this->eventService->queryEvent();
@@ -185,6 +188,18 @@ class EventController extends AbstractController
     public function hideEvent(int $id)
     {
         $this->eventService->hideEventProcess($id);
+        return $this->redirectToRoute("events");
+    }
+
+    /**
+     * @Route("/checked_event/{id}", name="checked_event")
+     *
+     * @param int $id
+     * @return Response
+     */
+    public function checkedEvent(int $id)
+    {
+        $this->eventService->checkedEventProcess($id);
         return $this->redirectToRoute("events");
     }
 

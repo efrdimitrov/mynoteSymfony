@@ -4,6 +4,7 @@
 namespace App\Service\Event;
 
 
+use App\Controller\EventController;
 use App\Entity\Event;
 
 interface EventServiceInterface
@@ -24,5 +25,9 @@ interface EventServiceInterface
     public function getHiddenEvents();
     
     public function hideEventProcess(int $id);
+
+    public function checkedEventProcess(int $id);
+
+    public function changeOfStatus();
 
 }

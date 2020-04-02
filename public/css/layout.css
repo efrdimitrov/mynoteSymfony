@@ -34,17 +34,6 @@ button,
     width: 51.5em;
 }
 
-/*.add-event-name:focus,*/
-/*.add-event-category:focus,*/
-/*.date:focus,*/
-/*.days-remaining:focus,*/
-/*.event-name:focus,*/
-/*.event-name-birthday:focus,*/
-/*.event-name-day:focus {*/
-/*    background: rgba(255, 140, 0, 0.35);*/
-/*}*/
-
-
 .date {
     width: 6.5em;
 }
@@ -62,7 +51,7 @@ button,
     margin: 0.2em auto;
     background: rgba(224, 238, 182, 0.74);
     color: #1b1e21;
-    padding: 0.3em;
+    padding: 0 0 0.2em 1em;
 }
 
 .message > div {
@@ -70,7 +59,7 @@ button,
 }
 
 .message-name {
-    min-width: 45%;
+    min-width: 40%;
 }
 
 .message-date {
@@ -104,7 +93,7 @@ label {
 
 .add-event-save {
     background: rgba(32, 116, 61, 0.28);
-    padding: 0.2em 1em 0.2em 1em;
+    padding: 0.1em 0.5em 0.1em 0.5em;
 }
 
 .event,
@@ -153,12 +142,12 @@ label {
     color: #051a05;
 }
 
-.hide {
+.hide-img {
     opacity: 0.7;
     width: 40px;
 }
 
-.hide:hover {
+.hide-img:hover {
     opacity: 1;
 }
 
@@ -166,13 +155,14 @@ label {
     display: inline-block;
     margin-right: 0.6em;
     background: rgba(40, 182, 71, 0.18);
-    padding: 0.2em;
+    padding: 0 0.2em 0.1em 0.2em;
+    cursor: pointer;
 }
 
 .event-delete {
     display: inline-block;
     background: rgba(201, 23, 34, 0.23);
-    padding: 0.2em;
+    padding: 0 0.2em 0.1em 0.2em;
     color: black;
     text-decoration: none;
 }

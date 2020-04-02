@@ -43,6 +43,11 @@ class Event
     private $status;
 
     /**
+     * @ORM\Column(type="integer", length=3)
+     */
+    private $checked;
+
+    /**
      * @return mixed
      */
     public function getId()
@@ -136,6 +141,22 @@ class Event
     public function setStatus($status): void
     {
         $this->status = $status;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getChecked()
+    {
+        return $this->checked;
+    }
+
+    /**
+     * @param mixed $checked
+     */
+    public function setChecked($checked): void
+    {
+        $this->checked = $checked;
     }
 
 }

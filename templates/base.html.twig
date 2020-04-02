@@ -6,13 +6,11 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <meta name="theme-color" content="#DAF7A6"> {#    color chrome mobile#}
-
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
-
     <link rel="icon" type="image/x-icon" href="{{ asset('img/favicon.ico') }}"/>
-
     <link rel="stylesheet" href="{{ asset('css/site.css') }}" type="text/css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <title>{% block title %} Събития {% endblock %}</title>
 
@@ -22,7 +20,8 @@
     {% set current_page_event = 'li' %}
     {% set current_page_note = 'li' %}
     {% set current_page_client = 'li' %}
-    {% if app.request.get('_route') == 'events' %}
+
+    {% if app.request.get('_route') == 'events' or app.request.get('_route') == '' %}
         {% set current_page_event = 'site-nav-current-page-event' %}
     {% elseif app.request.get('_route') == 'notes' %}
         {% set current_page_note = 'site-nav-current-page-note' %}

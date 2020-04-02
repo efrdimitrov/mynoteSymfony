@@ -19,14 +19,17 @@ class EventType extends AbstractType
         ->add('date', DateType::class, [
             'widget' => 'single_text',
             // this is actually the default format for single_text
-            'format' => 'dd.MM.yyyy',
+            'format' => 'dd.MM.yyyy'
         ])
         ->add('category')
         ->add('days_remaining', NumberType::class,[
             'empty_data' => '0'
         ])
-        ->add('status',  CheckboxType::class,[
-            'attr' => array('checked' => 'checked', 'value' => '1')
+        ->add('status',  NumberType::class,[
+            'empty_data' => '0'
+        ])
+        ->add('checked',  NumberType::class,[
+            'empty_data' => NULL
         ]);
    }
 }
