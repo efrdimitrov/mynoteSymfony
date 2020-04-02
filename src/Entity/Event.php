@@ -38,7 +38,7 @@ class Event
     private $days_remaining;
 
     /**
-     * @ORM\Column(type="boolean", length=255)
+     * @ORM\Column(type="integer", length=1)
      */
     private $status;
 
@@ -137,7 +137,6 @@ class Event
     {
         $this->status = $status;
     }
-
 
 }
 

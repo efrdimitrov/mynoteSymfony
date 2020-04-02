@@ -5,7 +5,6 @@ namespace App\Controller;
 use App\Service\Category\CategoryService;
 use App\Service\Message\MessageServiceInterface;
 use Doctrine\ORM\EntityManagerInterface;
-use Exception;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Response;
@@ -61,12 +60,29 @@ class EventController extends AbstractController
     }
 
     /**
+     * @Route("/events", name="events")
      * @Route("/", name="index")
+     *
+     * @return Response
      */
-    public function index()
+    public function events()
     {
-        return $this->redirectToRoute("events");
+
+        $this->messageService->newPhoneBill();
+        $events = $this->eventService->queryEvent();
+        $categories = $this->categoryService->getAll();
+        $viewEvents = $this->messageService->viewEvents();
+        $telephone = $this->messageService->telephone();
+
+        return $this->render("events/events.html.twig",
+            [
+                'events' => $events,
+                'categories' => $categories,
+                'view_events' => $viewEvents,
+                'telephone' => $telephone,
+            ]);
     }
+
 
     /**
      * @Route("/create_event", name="create_event")
@@ -88,29 +104,6 @@ class EventController extends AbstractController
             [
                 'event' => $this->eventService->getLast(),
                 'events' => $events,
-                'view_events' => $viewEvents,
-                'telephone' => $telephone,
-            ]);
-    }
-
-    /**
-     * @Route("/events", name="events")
-     *
-     * @return Response
-     * @throws Exception
-     */
-    public function events()
-    {
-        $this->messageService->newPhoneBill();
-        $events = $this->eventService->queryEvent();
-        $categories = $this->categoryService->getAll();
-        $viewEvents = $this->messageService->viewEvents();
-        $telephone = $this->messageService->telephone();
-
-        return $this->render("events/events.html.twig",
-            [
-                'events' => $events,
-                'categories' => $categories,
                 'view_events' => $viewEvents,
                 'telephone' => $telephone,
             ]);
@@ -165,11 +158,11 @@ class EventController extends AbstractController
     }
 
     /**
-     * @Route("/status_events_page", name="status_events_page")
+     * @Route("/hidden_events_page", name="hidden_events_page")
      */
-    public function statusEventsPage()
+    public function hiddenEventsPage()
     {
-        $statusEvents = $this->eventService->statusEvents();
+        $statusEvents = $this->eventService->getHiddenEvents();
         $categories = $this->categoryService->getAll();
         $viewEvents = $this->messageService->viewEvents();
         $telephone = $this->messageService->telephone();

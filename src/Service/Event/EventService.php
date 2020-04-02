@@ -8,6 +8,7 @@ use Doctrine\ORM\EntityManagerInterface;
 use App\Entity\Event;
 use App\Repository\EventRepository;
 use Doctrine\ORM\Query\ResultSetMapping;
+use Exception;
 
 class EventService implements EventServiceInterface
 {
@@ -89,7 +90,7 @@ class EventService implements EventServiceInterface
     /**
      * @return mixed
      */
-    public function hiddenEvents()
+    public function getHiddenEvents()
     {
         return $this->entityManager->createQuery("
             SELECT e FROM App\Entity\Event e
@@ -97,10 +98,10 @@ class EventService implements EventServiceInterface
         ")
             ->getResult();
     }
-    
+
     /**
-    * @param int $id
-    */
+     * @param int $id
+     */
     public function hideEventProcess(int $id)
     {
         $this->entityManager->createQuery("

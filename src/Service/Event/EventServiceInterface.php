@@ -21,7 +21,7 @@ interface EventServiceInterface
 
     public function queryEvent();
 
-    public function hiddenEvents();
+    public function getHiddenEvents();
     
     public function hideEventProcess(int $id);
 

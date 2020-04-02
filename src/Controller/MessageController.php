@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 
+use App\Entity\Event;
 use App\Service\Message\MessageServiceInterface;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Routing\Annotation\Route;
@@ -40,11 +41,13 @@ class MessageController extends AbstractController
     /**
      * @Route("/pay_telephone/{id}", name="pay_telephone")
      *
+     * @param int $id
+     * @param Event $event
      * @return Response
      */
-    public function payTelephone()
+    public function payTelephone(int $id, Event $event)
     {
-        $this->messageService->payTelephoneProcess();
+        $this->messageService->payTelephoneProcess($id, $event);
         return $this->redirectToRoute("events");
     }
 }

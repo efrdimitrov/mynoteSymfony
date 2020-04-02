@@ -2,7 +2,7 @@
     {% set days_remaining = "now" | date('t') - "now" | date('j') + 8 %}
     {% set category = telephone[0].getCategory %}
     {% set date_telephone = telephone[0].getDate | date('U') %}
-    {% if("now" | date('j') >= 9 and category == 'неплатен' and "now" | date('U') > date_telephone ) %}
+    {% if( category == 'неплатен' ) %}
         <article>
             <form method="post" class="telephone">
                 {{ 'Виваком' }}

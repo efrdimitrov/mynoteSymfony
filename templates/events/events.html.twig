@@ -5,11 +5,11 @@
 {% block body %}
     <div class="event-site">
         <form name="authenticate" action="{{ path('create_event') }}" method="post">
-            <div class="add">
-                <input class="add-name" id="event_name" placeholder="Име" name="event[name]" aria-label="">
+            <div class="add-event">
+                <input class="add-event-name" id="event_name" placeholder="Име" name="event[name]" aria-label="">
 
                 <label for="category">Категория
-                    <select name="event[category]">
+                    <select class="add-event-category" name="event[category]">
                         {% for category in categories %}
                             <option>{{ category.name }}</option>
                         {% endfor %}
@@ -31,7 +31,7 @@
                 </label>
 
                 <label for="add_event">
-                    <input class="add-event" type="submit" name="add_event" value="Запиши">
+                    <input class="add-event-save" type="submit" name="add_event" value="Запиши">
                 </label>
             </div>
         </form>
@@ -84,6 +84,6 @@
         {% endfor %}
     </div>
 
-    <a style="color: #F0F0F0;" href="{{ path('status_events_page') }}">Скрити</a>
+    <a style="color: #F0F0F0;" href="{{ path('hidden_events_page') }}">Скрити</a>
 {% endblock %}
 
