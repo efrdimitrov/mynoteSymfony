@@ -29,7 +29,6 @@ button,
 }
 
 .message,
-.add-event,
 .telephone {
     width: 51.5em;
 }
@@ -78,17 +77,18 @@ button,
     border: 1px solid #8f6f04;
     margin: 0.7em auto 1em auto;
     background: rgba(238, 237, 165, 0.39);
-    padding: 0.5em;
+    padding: 0.3em 0.2em 0.3em 0.2em;
+    width: 41em;
 }
 
 .add-event-name,
 label {
-    margin: 0.3em;
+    margin: 0.1em 0 0.3em 0.2em;
     padding: 0.1em;
 }
 
 .add-event-name {
-    width: 49.5em;
+    width: 99%;
 }
 
 .add-event-save {
