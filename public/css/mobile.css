@@ -33,6 +33,10 @@
         width: 98%;
     }
 
+    .note-area {
+        padding: 0.1em;
+    }
+
     .add-client,
     .client,
     .client-name {
