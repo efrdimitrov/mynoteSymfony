@@ -1,8 +1,8 @@
 .add-client {
-    width: 58.8em;
+    width: 57.8em;
     margin: 10px auto 0 auto;
     background: rgba(103, 143, 86, 0.44);
-    padding: 0.5em;
+    padding: 0.2em;
     border-radius: 0.3em;
     border: 1px solid;
 }
@@ -42,7 +42,7 @@
     padding: 0 2em;
     color: #bbeeda;
     cursor: pointer;
-    margin: -0.3em 0.5em;
+    margin: -0.3em 0.3em;
 }
 
 .client {
