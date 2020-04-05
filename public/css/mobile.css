@@ -1,5 +1,5 @@
 @media screen and (max-width: 800px) {
-    .add,
+    .add-event,
     .event,
     .event-birthday,
     .event-day,
@@ -111,7 +111,7 @@
     .event-name-birthday,
     .event-name-day {
         margin-left: 40px;
-        width: 56%;
+        width: 87%;
     }
 
     .telephone,

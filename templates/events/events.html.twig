@@ -4,37 +4,22 @@
 
 {% block body %}
     <div class="event-site">
-        <form name="authenticate" action="{{ path('create_event') }}" method="post">
-            <div class="add-event">
-                <input class="add-event-name" id="event_name" placeholder="Име" name="event[name]" aria-label="">
-
-                <label for="category">Категория
-                    <select class="add-event-category" name="event[category]">
-                        {% for category in categories %}
-                            <option>{{ category.name }}</option>
-                        {% endfor %}
-                    </select>
-                </label>
-
-                <label for="category">Дата
-                    <input class="date" type="text" name="event[date]"
-                           value="{{ "now" | date('d.m.Y') }}">
-                </label>
-
-                <label for="category">Предсрочни
-                    <input class="days-remaining" placeholder="дни" type="text"
-                           name="event[days_remaining]">
-                </label>
-
-                <label for="category">Скрит
-                    <input class="hide" type="checkbox" name="event[status]" id="category">
-                </label>
-
-                <label for="add_event">
-                    <input class="add-event-save" type="submit" name="add_event" value="Запиши">
-                </label>
+        <form action="{{ path('create_event') }}" method="post" name="add-event" onsubmit="return Validate()">
+            <div class="add-event" id="add-event">
+                <input class="add-event-name" id="event-name" placeholder="Име" name="event[name]" aria-label="">
+                <input class="add-event-date" type="date" name="event[date]" id="date" value="{{ "now" | date('Y-m-d') }}"
+                       title="Дата" aria-label="">
+                <select class="add-event-category" name="event[category]" id="category" title="Категория" aria-label="">
+                    {% for category in categories %}
+                        <option>{{ category.name }}</option>
+                    {% endfor %}
+                </select>
+                <input class="add-event-days-remaining" name="event[days_remaining]" placeholder="дни" type="text" aria-label=""
+                       title="Предсрочни" id="days-remaining">
+                <input class="add-event-save" type="submit" name="add_event" value="Запиши" aria-label="">
             </div>
         </form>
+
 
         {% for event in events %}
 
@@ -47,17 +32,22 @@
                 {% set eventImg = 'event-day' %}
                 {% set eventName = 'event-name-day' %}
             {% endif %}
-            <form class="{{ eventImg }}" action="{{ path('edit_event', {id: event.id}) }}) }}" method="post"
+            <form name="authenticate" class="{{ eventImg }}" action="{{ path('edit_event', {id: event.id}) }}) }}"
+                  method="post"
                   id="{{ event.id }}">
                 <input class="{{ eventName }}" contenteditable="true" name="event[name]" value="{{ event.name }}"
                        aria-label=""/>
                 {% set event_date = event.date %}
+                {% set current_year = "now" | date('Y') %}
+                {% set next_year = current_year + 1 %}
+                {% set date = event_date | date('Y-m-d') %}
                 {% if event_date | date('Y') == 1900 or event.category == 'именден' or event.category == 'ежегодни' %}
-                    {% set date = event_date | date('d.m') %}
-                {% else %}
-                    {% set date = event_date | date('d.m.Y') %}
+                    {% set date = event_date | date(current_year ~ '-m-d') %}
+                    {% if (event_date | date(current_year ~ '-m-d') < "now" | date('Y-m-d')) %}
+                        {% set date = event_date | date(next_year ~ '-m-d') %}
+                    {% endif %}
                 {% endif %}
-                <input class="date" type="text" name="event[date]" value="{{ date }}" aria-label=""/>
+                <input class="date" type="date" name="event[date]" value="{{ date }}" aria-label=""/>
                 <select name="event[category]" aria-label="">
                     {% for category in categories %}
                         {% set selected = '' %}
