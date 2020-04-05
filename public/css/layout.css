@@ -186,6 +186,7 @@ label {
     width: 100%;
     margin-bottom: 0.5em;
     background: rgba(211, 232, 255, 0.38);
+    padding: 0 0.5em;
 }
 
 .other-notes {
