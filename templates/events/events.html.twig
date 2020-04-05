@@ -70,15 +70,15 @@
 
                 {{ include('event_time_remaining.html.twig') }}
 
-                <a style="text-decoration:none;" href="{{ path('hide_event', { id: event.id}) }}" title="Скрий"
-                   onclick="return confirm('Скрий {{ event.name }}')">
-                    <img class="hide-img" alt="Скрий" src="{{ asset('img/hide.png') }}">
-                </a>
                 <input class="days-remaining" name="event[days_remaining]" value="{{ event.daysRemaining }}"
                        aria-label="">
                 <a class="event-edit" onclick="document.getElementById('{{ event.id }}').submit();">запиши</a>
                 <a class="event-delete" href="{{ path('delete_event', { id: event.id}) }}"
                    onclick="return confirm('Изтрий {{ event.name }}')">изтрий</a>
+                <a style="text-decoration:none;" href="{{ path('hide_event', { id: event.id}) }}" title="Скрий"
+                   onclick="return confirm('Скрий {{ event.name }}')">
+                    <img class="hide-img" alt="Скрий" src="{{ asset('img/hide.png') }}">
+                </a>
 
             </form>
         {% endfor %}
