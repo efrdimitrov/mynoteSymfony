@@ -101,7 +101,7 @@ label {
 .event-day {
     margin: 0.3em auto 0 auto;
     width: 76em;
-    padding: 0.2em;
+    padding: 0.3em 0.2em 0.3em 0.2em;
     background: rgba(222, 243, 207, 0.65);
 }
 
@@ -145,6 +145,8 @@ label {
 .hide-img {
     opacity: 0.7;
     width: 40px;
+    position: absolute;
+    margin: 0.1em 0.4em;
 }
 
 .hide-img:hover {
