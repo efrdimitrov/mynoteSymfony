@@ -1,14 +1,12 @@
 input,
-textarea,
-select {
+textarea {
     padding-left: 0.3em;
 }
 
 .add-client {
-    width: 57.8em;
+    width: 53.4em;
     margin: 10px auto 0 auto;
     background: rgba(103, 143, 86, 0.44);
-    padding: 0.2em;
     border-radius: 0.3em;
     border: 1px solid;
 }
@@ -24,18 +22,18 @@ select {
 .client-zone,
 .client-region,
 .client-address {
-    /*margin: 0.2em;*/
     border-radius: 0.3em;
     border: 1px solid;
-    /*box-shadow: 2px 2px 3px 0 rgba(0,0,0,0.75);*/
 }
 
 .add-client-name {
     width: 30em;
+    margin: 3px 0 3px 3px;
 }
 
 .add-client-address {
-    width: 56.9em;
+    width: 52.9em;
+    margin: 0 3px 3px 3px;
 }
 
 .add-client-region{
@@ -43,11 +41,11 @@ select {
 }
 
 .add-client-save {
+    position: absolute;
     background: rgba(84, 103, 0, 0.46);
-    padding: 0 2em;
-    color: #bbeeda;
+    width: 2em;
     cursor: pointer;
-    margin: -0.3em 0.3em;
+    margin: 3px;
 }
 
 .client {

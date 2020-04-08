@@ -60,7 +60,7 @@ class EventController extends AbstractController
 
     /**
      * @Route("/events", name="events")
-     * @Route("/", name="")
+     * @Route("/", name="index")
      *
      * @return Response
      */
