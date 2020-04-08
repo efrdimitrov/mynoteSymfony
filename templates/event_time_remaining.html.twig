@@ -34,7 +34,7 @@
     {% if event_date | date('j') < "now" | date('j', timezone="Europe/Sofia") %}
         {% set days = "now" | date('j') - event_date | date('j') %}
     {% else %}
-        {% set days = event_date | date('t') - event_date | date('j') + "now" | date('j') %}
+        {% set days = "now" | date('t') - event_date | date('j') + "now" | date('j') %}
     {% endif %}
 
     {# last time #}
@@ -78,7 +78,8 @@
         {% if months > 0 %}
             {{ months }}м.
         {% endif %}
-        {% if days > 0 and days != 31 %}
+        {% set last_day_month_now = days < "now" | date('t') %}
+        {% if days > 0 and days != 31 and last_day_month_now %}
             {{ days }}д.
         {% endif %}
     {% endif %}

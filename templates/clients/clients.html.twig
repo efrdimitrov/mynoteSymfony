@@ -45,8 +45,8 @@
                 <option>Селата</option>
             </select>
             <input name="client[region]" value="{{ client.region }}" class="client-region" aria-label="">
+            <input class="client-save" type="submit" name="add_client" value="" aria-label="">
             <textarea class="client-address" name="client[address]" aria-label="">{{ client.address }}</textarea>
-            <input class="client-save" type="submit" name="add_client" value="">
         </form>
 
     {% endfor %}

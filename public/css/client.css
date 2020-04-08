@@ -1,3 +1,9 @@
+input,
+textarea,
+select {
+    padding-left: 0.3em;
+}
+
 .add-client {
     width: 57.8em;
     margin: 10px auto 0 auto;
@@ -18,11 +24,10 @@
 .client-zone,
 .client-region,
 .client-address {
-    margin: 0.2em;
+    /*margin: 0.2em;*/
     border-radius: 0.3em;
     border: 1px solid;
-    padding-left: 0.3em;
-    box-shadow: 2px 2px 3px 0 rgba(0,0,0,0.75);
+    /*box-shadow: 2px 2px 3px 0 rgba(0,0,0,0.75);*/
 }
 
 .add-client-name {
@@ -53,37 +58,47 @@
 }
 
 .client-name {
-    grid-column: 1 / span 2;
+    margin: 3px 0 0 3px;
+    grid-column: 1 / span 3;
     grid-row: 1;
-    width: 21.3em;
+    width: 24.3em;
 }
 
 .client-region{
-    width: 12.9em;
+    margin: 3px 3px 3px 0;
+    width: 13.26em;
+    grid-column: 2;
+    grid-row: 2 / span 2;
 }
 
 .client-zone {
-    width: 8em;
+    margin: 3px;
+    width: 8.6em;
+    grid-column: 1;
+    grid-row: 2 / span 2;
 }
 
 .client-address {
-    grid-column: 3;
-    grid-row: 1 / span 2;
+    margin: 3px;
+    grid-column: 4;
+    grid-row: 1 / span 3;
     width: 55em;
 }
 
 .client-save{
-    grid-column: 4;
-    grid-row: 1 / span 2;
-    padding: 1em;
+    width: 2em;
+    margin: 3px 0;
+    grid-column: 3;
+    grid-row: 2 / span 2;
+    /*padding: 1em;*/
     cursor: pointer;
     background: rgba(154, 181, 154, 0.67);
 }
 
 .search {
-    padding: 0.5em;
+    padding: 3px;
     background: rgba(208, 208, 0, 0.21);
-    width: 42em;
+    width: 41.9em;
     margin: 1em auto;
 }
 
@@ -99,5 +114,5 @@
 .search-address-btn,
 .search-client-btn {
     background: rgba(174, 158, 21, 0.36);
-    padding: 0 0.4em;
+    padding: 0.22em 0.4em;
 }

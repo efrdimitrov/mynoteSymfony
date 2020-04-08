@@ -13,10 +13,6 @@ use App\Entity\Category;
 use App\Form\EventType;
 use Symfony\Component\HttpFoundation\Request;
 use App\Service\Event\EventServiceInterface;
-use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
-
-//use Symfony\Component\Validator\Validator\ValidatorInterface;
-
 
 /**
  * @method createQueryBuilder(string $string)
@@ -71,7 +67,6 @@ class EventController extends AbstractController
     public function events()
     {
         $this->eventService->changeOfStatus();
-
         $this->messageService->newPhoneBill();
         $events = $this->eventService->queryEvent();
         $categories = $this->categoryService->getAll();
@@ -91,13 +86,10 @@ class EventController extends AbstractController
      * @Route("/create_event", name="create_event")
      *
      * @param Request $request
-     * @param AuthenticationUtils $authenticationUtils
      * @return Response
      */
-    public function createEvent(Request $request, AuthenticationUtils $authenticationUtils)
+    public function createEvent(Request $request)
     {
-        $error = $authenticationUtils->getLastAuthenticationError();
-
         $event = new Event();
         $form = $this->createForm(EventType::class, $event);
         $form->handleRequest($request);
@@ -108,7 +100,6 @@ class EventController extends AbstractController
 
         return $this->render('events/added_event.html.twig',
             [
-                'error' => $error,
                 'event' => $this->eventService->getLast(),
                 'events' => $events,
                 'view_events' => $viewEvents,

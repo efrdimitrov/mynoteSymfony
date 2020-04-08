@@ -62,6 +62,7 @@ class NoteController extends AbstractController
      */
     public function notes()
     {
+        $this->eventService->changeOfStatus();
         $mainNotes = $this->noteService->allMainNotes();
         $events = $this->eventService->queryEvent();
         $viewEvents = $this->messageService->viewEvents();

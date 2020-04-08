@@ -131,28 +131,25 @@ class EventService implements EventServiceInterface
 
     public function changeOfStatus()
     {
-        $status = false;
-        $isChangeStatusEvent = false;
         if ($this->changeOfStatusEvent()) {
             $status = $this->changeOfStatusEvent()[0]->getStatus();
             $checked = $this->changeOfStatusEvent()[0]->getChecked();
             $daysRemaining = $this->changeOfStatusEvent()[0]->getDaysRemaining();
-            if($daysRemaining == 0){
+            if ($daysRemaining == 0) {
                 $daysRemaining = 3;
             }
             $dateNow = new \DateTime('now');
             $dayOfYearNow = $dateNow->format('z');
-            $dayOfChangeStatusEvent = $checked + $daysRemaining;
-            $isChangeStatusEvent = $dayOfChangeStatusEvent <= $dayOfYearNow;
-        }
+            $isChangeStatusEvent = $checked <= $dayOfYearNow - $daysRemaining;
+            $changeStatus = $dayOfYearNow - $daysRemaining;
 
-        if ($status and $isChangeStatusEvent) {
-            $query = $this->entityManager->createQuery("
-            UPDATE App\Entity\Event e 
-            SET e.status = 0 
-            WHERE e.status = $status"
-            );
-            $query->getResult();
+            if ($status and $isChangeStatusEvent) {
+                $query = $this->entityManager
+                    ->createQuery("UPDATE App\Entity\Event e 
+                    SET e.status = 0
+                    WHERE e.checked <= $changeStatus");
+                $query->getResult();
+            }
         }
     }
 
@@ -164,6 +161,7 @@ class EventService implements EventServiceInterface
         return $this->entityManager->createQuery("
             SELECT e FROM App\Entity\Event e
             WHERE e.status = 1 AND e.name != 'telephone'
+            ORDER BY e.checked 
         ")
             ->getResult();
     }

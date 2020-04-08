@@ -59,6 +59,7 @@ class ClientController extends AbstractController
      */
     public function clients()
     {
+        $this->eventService->changeOfStatus();
         $clients = $this->clientService->allClients();
         $viewEvents = $this->messageService->viewEvents();
         $telephone = $this->messageService->telephone();
