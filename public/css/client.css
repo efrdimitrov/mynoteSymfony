@@ -59,7 +59,6 @@ textarea {
     margin: 3px 0 0 3px;
     grid-column: 1 / span 3;
     grid-row: 1;
-    width: 24.3em;
 }
 
 .client-region{

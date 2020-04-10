@@ -16,12 +16,53 @@
         width: auto;
     }
 
+    .add-event {
+        display: grid;
+        grid-template-columns: 48% 40% auto;
+    }
+
+    .add-event-name {
+        grid-column: 1 / 3 ;
+        grid-row: 1;
+    }
+
+    .add-event-days-remaining {
+        margin: 0.1em 0.3em;
+        grid-column: 3;
+        grid-row: 1;
+    }
+
+    .add-event-date {
+        /*width: 95%;*/
+        grid-column: 1;
+        grid-row: 2;
+    }
+
+    .add-event-category {
+        width: 88%;
+        margin: 0 0.3em 0.3em 1em;
+        grid-column: 2;
+        grid-row: 2;
+    }
+
+    .add-event-save {
+        margin: 0 0.3em;
+        width: 15%;
+        grid-column: 3;
+        grid-row: 2;
+    }
+
     .add-client {
         margin-bottom: 2em;
     }
 
     .add-name {
         width: 98%;
+    }
+
+    .add-client-save {
+        position: relative;
+        margin: 0.3em;
     }
 
     .event-name {
