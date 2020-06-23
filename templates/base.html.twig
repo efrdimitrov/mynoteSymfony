@@ -20,6 +20,7 @@
     {% set current_page_event = 'li' %}
     {% set current_page_note = 'li' %}
     {% set current_page_client = 'li' %}
+    {% set current_page_car = 'li' %}
 
     {% if app.request.get('_route') == 'events' or app.request.get('_route') == 'index' %}
         {% set current_page_event = 'site-nav-current-page-event' %}
@@ -27,6 +28,8 @@
         {% set current_page_note = 'site-nav-current-page-note' %}
     {% elseif app.request.get('_route') == 'clients' %}
         {% set current_page_client = 'site-nav-current-page-client' %}
+    {% elseif app.request.get('_route') == 'cars' %}
+        {% set current_page_car = 'site-nav-current-page-car' %}
     {% endif %}
     <div class="site">
         <nav class="site-nav">
@@ -40,7 +43,7 @@
                 <li class="{{ current_page_client }}">
                     <a href="{{ path('clients') }}">КЛИЕНТИ</a>
                 </li>
-                <li class="{{ current_page_client }}">
+                <li class="{{ current_page_car }}">
                     <a href="{{ path('cars') }}">КОЛИ</a>
                 </li>
             </ul>
