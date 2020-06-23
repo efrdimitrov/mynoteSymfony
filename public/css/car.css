@@ -1,80 +1,111 @@
 .add-car {
+    max-width: 85%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 5px 5px;
     margin: 0 auto;
     background-color: #b9cdbc;
     border: 1px solid;
     border-radius: 6px;
 }
 
-form{
-    margin-bottom: 2em;
+.add-car * {
+    margin: 3px 3px;
 }
 
-li {
-    list-style: none;
-}
-
-
-
-tbody {
-    background-color: #e2dfdf;
-}
-
-th label {
-    text-align: center;
-}
-
-td{
-    padding: 0 5px;
-    border: 1px solid;
+form {
+    margin-bottom: 1em;
 }
 
 .name {
-    width: 10vw;
+    width: 8em;
 }
 
 .brand,
 .model {
-    width: 8vw;
+    flex-grow: 1;
+    width: 7em;
 }
 
-.cubic,
-.year {
-    width: 4vw;
-}
-
-.power,
-.kilowatt {
-    width: 3vw;
+.cubic-power-year {
+    width: 3em;
 }
 
 .motor {
-    width: 6vw;
+    width: 5em;
 }
 
 .chassis {
-    width: 18vw;
-    text-transform: uppercase;
+    flex-grow: 1;
+    width: 14em;
 }
 
 .info {
-    width: 23vw;
-    height: 30px;
+    flex-grow: 1;
+    width: 15em;
+    height: 27px;
 }
 
 .save {
-    padding: 10px 20px;
+    padding: 10px 15px;
     background-color: #718C00;
 }
 
 .delete {
-    padding: 10px 20px;
+    padding: 10px 15px;
     background-color: #B0413E;
 }
 
-.cars{
-    margin: 0 auto;
-    border-collapse: collapse;
+.cars {
+    padding: 2px;
+    max-width: 85%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: center;
+    margin: 3px auto;
     border: 1px solid;
+    background-color: #dae3e7;
     border-radius: 6px;
+}
+
+.cars-name {
+    width: 8em;
+    text-transform: capitalize;
+}
+
+.cars-brand,
+.cars-model {
+    width: 6.8em;
+    text-transform: capitalize;
+}
+
+.cars-cubic-power-year {
+    width: 4em;
+}
+
+.cars-motor {
+    width: 5em;
+}
+
+.cars-chassis {
+    width: 12em;
+    text-transform: uppercase;
+}
+
+.cars-kilowatt {
+    width: 2em;
+}
+
+.cars-info {
+    flex-grow: 1;
+    width: 13em;
+    height: 27px;
+}
+
+.cars-save-delete {
+    margin: 3px 0 0 8px;
 }
 

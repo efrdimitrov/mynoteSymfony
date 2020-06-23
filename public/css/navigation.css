@@ -49,7 +49,8 @@
 
 .site-nav-current-page-event,
 .site-nav-current-page-note,
-.site-nav-current-page-client {
+.site-nav-current-page-client,
+.site-nav-current-page-car {
     background: #F0F0F0;
     box-shadow: 0 4px 0 -2px #F0F0F0;
     border-right: 2px #1b1e21 solid;
