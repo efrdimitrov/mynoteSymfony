@@ -1,0 +1,64 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Коли{% endblock %}
+
+{% block body %}
+
+    <form name="authenticate" action="{{ path('create_car') }}" class="" method="post">
+        <table class="add-car">
+            <thead>
+            <tr>
+                <th><label for="name">Име</label></th>
+                <th><label for="brand">Марка</label></th>
+                <th><label for="model">Модел</label></th>
+                <th><label for="cubic">Куб. см</label></th>
+                <th><label for="power">к.с.</label></th>
+                <th><label for="year">година</label></th>
+                <th><label for="motor">мотор</label></th>
+                <th><label for="chassis">шаси</label></th>
+                <th><label for="info">инфо</label></th>
+                <th></th>
+                <th></th>
+            </tr>
+            <tr>
+                <th><input class="name" name="car[name]" id="name" placeholder="име"></th>
+                <th><input class="brand" name="car[brand]" id="brand" placeholder="марка"></th>
+                <th><input class="model" name="car[model]" id="model" placeholder="модел"></th>
+                <th><input class="cubic" name="car[cubic]" id="cubic" placeholder="куб."></th>
+                <th><input class="power" name="car[power]" id="power" placeholder="конски"></th>
+                <th><input class="year" name="car[year]" id="year" placeholder="година"></th>
+                <th>
+                    <select class="motor" name="car[motor]" id="motor">
+                        <option>дизел</option>
+                        <option>бензин</option>
+                    </select>
+                </th>
+                <th><input class="chassis" name="car[chassis]" id="chassis" placeholder="шаси"></th>
+                <th><textarea class="info" name="car[info]" id="info"></textarea></th>
+                <th><input class="save" type="submit" title="запиши" value=""></th>
+            </tr>
+            </thead>
+        </table>
+    </form>
+    <table class="cars">
+        <tbody>
+        {% for car in cars %}
+            <tr>
+                <td>{{ car.name }}</td>
+                <td>{{ car.brand }}</td>
+                <td>{{ car.model }}</td>
+                <td>{{ car.cubic }}</td>
+                <td>{{ car.power }}</td>
+                <td>{{ car.year }}</td>
+                <td>{{ car.motor }}</td>
+                <td>{{ car.chassis }}</td>
+                <td>{{ (car.power * 0.745699872)|round(0, 'floor')  }}</td>
+                <td><textarea class="info">{{ car.info }}</textarea></td>
+                <td><input class="save" type="submit" title="запиши" value=""></td>
+                <td><input class="delete" type="submit" title="изтрии" value=""></td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}

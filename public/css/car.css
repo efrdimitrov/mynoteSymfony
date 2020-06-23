@@ -1,0 +1,80 @@
+.add-car {
+    margin: 0 auto;
+    background-color: #b9cdbc;
+    border: 1px solid;
+    border-radius: 6px;
+}
+
+form{
+    margin-bottom: 2em;
+}
+
+li {
+    list-style: none;
+}
+
+
+
+tbody {
+    background-color: #e2dfdf;
+}
+
+th label {
+    text-align: center;
+}
+
+td{
+    padding: 0 5px;
+    border: 1px solid;
+}
+
+.name {
+    width: 10vw;
+}
+
+.brand,
+.model {
+    width: 8vw;
+}
+
+.cubic,
+.year {
+    width: 4vw;
+}
+
+.power,
+.kilowatt {
+    width: 3vw;
+}
+
+.motor {
+    width: 6vw;
+}
+
+.chassis {
+    width: 18vw;
+    text-transform: uppercase;
+}
+
+.info {
+    width: 23vw;
+    height: 30px;
+}
+
+.save {
+    padding: 10px 20px;
+    background-color: #718C00;
+}
+
+.delete {
+    padding: 10px 20px;
+    background-color: #B0413E;
+}
+
+.cars{
+    margin: 0 auto;
+    border-collapse: collapse;
+    border: 1px solid;
+    border-radius: 6px;
+}
+
