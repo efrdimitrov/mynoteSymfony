@@ -129,6 +129,9 @@ class EventService implements EventServiceInterface
             ->getResult();
     }
 
+    /**
+     * @throws Exception
+     */
     public function changeOfStatus()
     {
         if ($this->changeOfStatusEvent()) {
