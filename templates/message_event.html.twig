@@ -1,4 +1,4 @@
-{% block body %}
+<article class="main-message">
     {% for view_event in view_events %}
 
         {% set year_is_leap_event = view_event.date | date('L') %}
@@ -21,6 +21,8 @@
                 <div class="message-date">
                     {% if view_event.date|date('Y') == 1900 %}
                         {{ view_event.date|date('d.m') }}
+                    {% elseif view_event.category == 'ежегодни' or view_event.category != 'именден' %}
+                            {{ view_event.date|date('d.m.') ~ "now"|date('Y') }}
                     {% else %}
                         {{ view_event.date|date('d.m.Y') }}
                     {% endif %}
@@ -36,20 +38,18 @@
                         {{ 'вчера' }}
                     {% endif %}
 
-                    {% if age > 0 and view_event.date|date('Y') != 1900 %}
+                    {% if age > 0 and view_event.date|date('Y') != 1900 and view_event.category != 'ежегодни' and view_event.category != 'именден' %}
                         {{ age }}г.
                     {% elseif diff_days > 0 and view_event.daysRemaining > 0 %}
                         {{ 'остават: ' ~ diff_days ~ 'дни' }} ({{ view_event.daysRemaining }})
                     {% endif %}
                 </div>
-                    <a style="text-decoration:none; height: 40px;" href="{{ path('checked_event', { id: view_event.id}) }}"
-                       title="Отметни"
-                       onclick="return confirm('Отметни {{ view_event.name }}')">
-                        <i class="fa fa-check-square" style="font-size:24px;color:green"></i>
-                    </a>
-
-
+                <a style="text-decoration:none; height: 40px;" href="{{ path('checked_event', { id: view_event.id}) }}"
+                   title="Отметни"
+                   onclick="return confirm('Отметни {{ view_event.name }}')">
+                    <i class="fa fa-check-square" style="font-size:24px; color:green; padding: 0.1em 0;"></i>
+                </a>
             </div>
         {% endif %}
     {% endfor %}
-{% endblock %}
+</article>
