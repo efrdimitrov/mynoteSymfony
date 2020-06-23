@@ -1,4 +1,8 @@
 @media screen and (max-width: 800px) {
+    .site-nav a {
+        font-size: 12px;
+    }
+
     .add-event,
     .event,
     .event-birthday,
