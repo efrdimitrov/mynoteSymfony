@@ -51,11 +51,16 @@ button,
 
 .add-event-date {
     margin-left: 0.2em;
+    width: 35%;
 }
 
 .hide {
     width: 20px;
     height: 20px;
+}
+
+.main-message{
+    padding-bottom: 1em;
 }
 
 .message {
@@ -86,6 +91,8 @@ button,
 }
 
 .add-event {
+    display: flex;
+    flex-wrap: wrap;
     border: 1px solid #8f6f04;
     margin: 0.7em auto 1em auto;
     background: rgba(238, 237, 165, 0.39);
@@ -103,6 +110,14 @@ label {
     width: 99%;
 }
 
+.add-event-category{
+    width: 35%;
+}
+
+.add-event-days-remaining{
+    width: 7%;
+}
+
 .add-event-date,
 .add-event-category,
 .add-event-days-remaining {
@@ -112,6 +127,7 @@ label {
 .add-event-save {
     background: rgba(32, 116, 61, 0.28);
     padding: 0 1em;
+    width: 8%;
 }
 
 .event,
