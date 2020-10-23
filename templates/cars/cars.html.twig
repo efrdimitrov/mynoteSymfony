@@ -3,39 +3,41 @@
 {% block title %}Коли{% endblock %}
 
 {% block body %}
-
-    <form name="authenticate" action="{{ path('create_car') }}" class="" method="post">
-        <section class="add-car">
-            <input class="name" name="car[name]" id="name" placeholder="име" aria-label="">
-            <input class="brand" name="car[brand]" id="brand" placeholder="марка" aria-label="">
-            <input class="model" name="car[model]" id="model" placeholder="модел" aria-label="">
-            <input class="cubic-power-year" name="car[cubic]" id="cubic" placeholder="куб." aria-label="">
-            <input class="cubic-power-year" name="car[power]" id="power" placeholder="конски" aria-label="">
-            <input class="cubic-power-year" name="car[year]" id="year" placeholder="година" aria-label="">
-            <select class="motor" name="car[motor]" id="motor" aria-label="">
+    <form name="authenticate" action="{{ path('create_car') }}" method="post">
+        <section class="c-add-car bordered o-container">
+            <input class="c-add-car__name" name="car[name]" id="name" placeholder="име" aria-label="">
+            <input class="c-add-car__brand" name="car[brand]" id="brand" placeholder="марка" aria-label="">
+            <input class="c-add-car__model" name="car[model]" id="model" placeholder="модел" aria-label="">
+            <input class="c-add-car__cubic" name="car[cubic]" id="cubic" placeholder="куб." aria-label="">
+            <input class="c-add-car__power" name="car[power]" id="power" placeholder="кон." aria-label="">
+            <input class="c-add-car__year" name="car[year]" id="year" placeholder="год." aria-label="">
+            <select name="car[motor]" id="motor" aria-label="">
                 <option>дизел</option>
                 <option>бензин</option>
             </select>
-            <input class="chassis" name="car[chassis]" id="chassis" placeholder="шаси" aria-label="">
-            <textarea class="info" name="car[info]" id="info" placeholder="инфо" aria-label=""></textarea>
-            <input class="save" type="submit" title="запиши" value="">
+            <input class="c-add-car__chassis" name="car[chassis]" id="chassis" placeholder="шаси" aria-label="">
+            <textarea class="c-add-car__info" name="car[info]" id="info" placeholder="инфо" aria-label=""></textarea>
+            <input class="c-add-car__save" type="submit" title="запиши" value="">
         </section>
     </form>
     {% for car in cars %}
-        <section class="cars">
-            <article class="cars-name">{{ car.name }}</article>
-            <article class="cars-brand">{{ car.brand }}</article>
-            <article class="cars-model">{{ car.model }}</article>
-            <article class="cars-cubic-power-year">{{ car.cubic }}</article>
-            <article class="cars-cubic-power-year">{{ car.power }}к.с.</article>
-            <article class="cars-cubic-power-year">{{ car.year }}г.</article>
-            <article class="cars-motor">{{ car.motor }}</article>
-            <article class="cars-chassis">{{ car.chassis }}</article>
-            <article class="cars-kilowatt">{{ (car.power * 0.745699872)|round(0, 'floor') }}</article>
-            <article><textarea class="cars-info" aria-label="">{{ car.info }}</textarea></article>
-            <article><input class="save cars-save-delete" type="submit" title="запиши" value=""></article>
-            <article><input class="delete cars-save-delete" type="submit" title="изтрии" value=""></article>
-        </section>
+        <form name="authenticate" action="{{ path('edit_car', {id: car.id}) }}) }}" method="post">
+            {% set power = car.power|slice(0, -2) %}
+            <section class="c-car o-container bordered">
+                <input class="c-car__name" name="car[name]" value="{{ car.name }}" aria-label="">
+                <input class="c-car__brand" name="car[brand]" value="{{ car.brand }}" aria-label="">
+                <input class="c-car__model" name="car[model]" value="{{ car.model }}" aria-label="">
+                <input class="c-car__cubic" name="car[cubic]" value="{{ car.cubic }}" aria-label="">
+                <input class="c-car__power" name="car[power]" value="{{ car.power }}" aria-label="">
+                <input class="c-car__year" name="car[year]" value="{{ car.year }}" aria-label="">
+                <input class="c-car__motor" name="car[motor]" value="{{ car.motor }}" aria-label="">
+                <input class="c-car__chassis" name="car[chassis]" value="{{ car.chassis }}" aria-label="">
+                <article class="c-car__kilowatt">{{ (power * 0.745699872)|round(0, 'floor') }}к.в.</article>
+                <textarea class="c-car__info" name="car[info]"  aria-label="">{{ car.info }}</textarea>
+                <input class="c-car__edit" type="submit" title="запиши" value="">
+                <a class="c-car__delete bordered" href="{{ path('delete_car', { id: car.id}) }}"
+                   onclick="return confirm('Изтрий {{ car.name }}')"></a>
+            </section>
+        </form>
     {% endfor %}
-
 {% endblock %}

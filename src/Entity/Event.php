@@ -160,6 +160,10 @@ class Event
         $this->checked = $checked;
     }
 
+    public function generate($currentRoute, array $array, bool $true)
+    {
+    }
+
 }
 
 

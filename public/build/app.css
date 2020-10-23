@@ -1,0 +1,836 @@
+/*! modern-normalize v0.7.0 | MIT License | https://github.com/sindresorhus/modern-normalize */
+/*
+Document
+========
+*/
+/**
+Use a better box model (opinionated).
+*/
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/**
+Use a more readable tab size (opinionated).
+*/
+:root {
+  -moz-tab-size: 4;
+  tab-size: 4;
+}
+
+/**
+1. Correct the line height in all browsers.
+2. Prevent adjustments of font size after orientation changes in iOS.
+*/
+html {
+  line-height: 1.15;
+  /* 1 */
+  -webkit-text-size-adjust: 100%;
+  /* 2 */
+}
+
+/*
+Sections
+========
+*/
+/**
+Remove the margin in all browsers.
+*/
+body {
+  margin: 0;
+}
+
+/**
+Improve consistency of default fonts in all browsers. (https://github.com/sindresorhus/modern-normalize/issues/3)
+*/
+body {
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+}
+
+/*
+Grouping content
+================
+*/
+/**
+Add the correct height in Firefox.
+*/
+hr {
+  height: 0;
+}
+
+/*
+Text-level semantics
+====================
+*/
+/**
+Add the correct text decoration in Chrome, Edge, and Safari.
+*/
+abbr[title] {
+  text-decoration: underline dotted;
+}
+
+/**
+Add the correct font weight in Edge and Safari.
+*/
+b,
+strong {
+  font-weight: bolder;
+}
+
+/**
+1. Improve consistency of default fonts in all browsers. (https://github.com/sindresorhus/modern-normalize/issues/3)
+2. Correct the odd 'em' font sizing in all browsers.
+*/
+code,
+kbd,
+samp,
+pre {
+  font-family: ui-monospace, SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace;
+  /* 1 */
+  font-size: 1em;
+  /* 2 */
+}
+
+/**
+Add the correct font size in all browsers.
+*/
+small {
+  font-size: 80%;
+}
+
+/**
+Prevent 'sub' and 'sup' elements from affecting the line height in all browsers.
+*/
+sub,
+sup {
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+}
+
+sub {
+  bottom: -0.25em;
+}
+
+sup {
+  top: -0.5em;
+}
+
+/*
+Forms
+=====
+*/
+/**
+1. Change the font styles in all browsers.
+2. Remove the margin in Firefox and Safari.
+*/
+button,
+input,
+optgroup,
+select,
+textarea {
+  font-family: inherit;
+  /* 1 */
+  font-size: 100%;
+  /* 1 */
+  line-height: 1.15;
+  /* 1 */
+  margin: 0;
+  /* 2 */
+}
+
+/**
+Remove the inheritance of text transform in Edge and Firefox.
+1. Remove the inheritance of text transform in Firefox.
+*/
+button,
+select {
+  /* 1 */
+  text-transform: none;
+}
+
+/**
+Correct the inability to style clickable types in iOS and Safari.
+*/
+button,
+[type=button],
+[type=reset],
+[type=submit] {
+  -webkit-appearance: button;
+}
+
+/**
+Remove the inner border and padding in Firefox.
+*/
+button::-moz-focus-inner,
+[type=button]::-moz-focus-inner,
+[type=reset]::-moz-focus-inner,
+[type=submit]::-moz-focus-inner {
+  border-style: none;
+  padding: 0;
+}
+
+/**
+Restore the focus styles unset by the previous rule.
+*/
+button:-moz-focusring,
+[type=button]:-moz-focusring,
+[type=reset]:-moz-focusring,
+[type=submit]:-moz-focusring {
+  outline: 1px dotted ButtonText;
+}
+
+/**
+Remove the padding so developers are not caught out when they zero out 'fieldset' elements in all browsers.
+*/
+legend {
+  padding: 0;
+}
+
+/**
+Add the correct vertical alignment in Chrome and Firefox.
+*/
+progress {
+  vertical-align: baseline;
+}
+
+/**
+Correct the cursor style of increment and decrement buttons in Safari.
+*/
+[type=number]::-webkit-inner-spin-button,
+[type=number]::-webkit-outer-spin-button {
+  height: auto;
+}
+
+/**
+1. Correct the odd appearance in Chrome and Safari.
+2. Correct the outline style in Safari.
+*/
+[type=search] {
+  -webkit-appearance: textfield;
+  /* 1 */
+  outline-offset: -2px;
+  /* 2 */
+}
+
+/**
+Remove the inner padding in Chrome and Safari on macOS.
+*/
+[type=search]::-webkit-search-decoration {
+  -webkit-appearance: none;
+}
+
+/**
+1. Correct the inability to style clickable types in iOS and Safari.
+2. Change font properties to 'inherit' in Safari.
+*/
+::-webkit-file-upload-button {
+  -webkit-appearance: button;
+  /* 1 */
+  font: inherit;
+  /* 2 */
+}
+
+/*
+Interactive
+===========
+*/
+/*
+Add the correct display in Chrome and Safari.
+*/
+summary {
+  display: list-item;
+}
+
+.o-container {
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+@media (max-width: 1000px) {
+  .o-messages {
+    display: flex !important;
+    flex-wrap: wrap;
+    justify-content: space-around;
+  }
+}
+@media (max-width: 360px) {
+  .o-container {
+    max-width: 350px;
+    width: 100%;
+    margin: 0 auto;
+  }
+}
+@media screen and (min-width: 361px) and (max-width: 1120px) {
+  .o-container {
+    max-width: 98%;
+    width: 100%;
+    margin: 0 auto;
+  }
+}
+.o-messages {
+  width: 1000px;
+  align-items: center;
+  border: 1px solid;
+  border-radius: 6px;
+  font-size: 18px;
+  font-weight: 600;
+  margin: 10px auto;
+}
+
+.bordered {
+  border: 1px solid;
+  border-radius: 3px;
+}
+
+body {
+  background-color: #F0F0F0;
+}
+
+ul[class],
+ol[class] {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+input,
+textarea,
+select {
+  border-radius: 3px;
+  border: 1px solid;
+  font-weight: 600;
+  padding-left: 4px;
+  height: 26px;
+}
+
+input:focus,
+textarea:focus,
+select:focus,
+input:hover,
+textarea:hover,
+select:hover {
+  background-color: #fff5d0;
+}
+
+button:hover {
+  background-color: #599647;
+}
+
+.c-nav {
+  background-color: #e3fae0;
+  border-bottom: 2px inset #1b1e21;
+}
+.c-nav__lists {
+  display: flex;
+  width: 440px;
+  margin: 0 auto;
+}
+.c-nav__list {
+  width: auto;
+  text-align: center;
+}
+.c-nav__list:hover a {
+  color: #42bc00;
+  background-color: #def3cf;
+}
+.c-nav__current {
+  background-color: #F0F0F0;
+  border-top: 2px solid #1b1e21;
+  border-right: 2px solid #1b1e21;
+  border-left: 2px solid #1b1e21;
+  box-shadow: 0 4px 0 -2px #F0F0F0;
+}
+.c-nav__link {
+  color: #40554b;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 40px;
+  width: auto;
+  padding: 0 5px;
+}
+.c-nav__logout {
+  align-self: center;
+  padding: 0 5px;
+  opacity: 0.4;
+}
+.c-nav__logout:hover {
+  opacity: 1;
+}
+
+.c-message {
+  display: grid;
+  grid-template-columns: auto 150px 110px 150px 30px;
+  background-color: #e0eeb6;
+  padding-left: 10px;
+}
+
+.c-add-event {
+  display: grid;
+  grid: 26px 26px/240px 240px 40px;
+  grid-gap: 2px;
+  background-color: #def3cf;
+  margin: 15px auto;
+  width: max-content;
+  padding: 2px;
+}
+.c-add-event * {
+  font-size: 18px;
+  font-weight: 600;
+}
+.c-add-event__name {
+  grid-column: 1/3;
+}
+.c-add-event__date {
+  width: 100%;
+}
+.c-add-event__save {
+  background-color: #95c684;
+}
+
+.c-event {
+  display: grid;
+  grid-template-columns: auto 170px 140px 27px 125px 75px 75px 40px;
+  grid-gap: 2px;
+  align-items: center;
+  background-color: rgba(238, 237, 165, 0.39);
+  padding: 2px;
+  margin: 4px auto;
+}
+.c-event * {
+  border-radius: 3px;
+  font-size: 18px;
+}
+.c-event--birthday {
+  background: url("/public/img/birthday-cake.png") no-repeat;
+  padding-left: 30px;
+}
+.c-event__name {
+  background-color: rgba(238, 237, 165, 0.39);
+}
+.c-event__date {
+  width: 100%;
+}
+.c-event__edit, .c-event__delete {
+  text-align: center;
+  padding-bottom: 2px;
+  cursor: pointer;
+}
+.c-event__edit {
+  color: #40554b;
+  background-color: rgba(40, 182, 71, 0.18);
+}
+.c-event__delete {
+  color: #ebeef3;
+  background-color: #ea4656;
+  border-color: #40554b;
+}
+.c-event__time-remaining {
+  font-weight: 600;
+}
+.c-event__hide-img {
+  opacity: 0.6;
+}
+.c-event__hide-img:hover {
+  opacity: 1;
+}
+.c-event input,
+.c-event select {
+  height: 26px;
+}
+
+.c-telephone {
+  display: grid;
+  grid-template-columns: 250px auto;
+  background-color: rgba(255, 118, 17, 0.11);
+  width: max-content;
+  padding: 0 10px;
+  height: 29px;
+}
+
+.o-note__save {
+  position: relative;
+  top: 22px;
+  left: 0;
+  background-color: #d6fffc;
+  font-weight: 600;
+}
+.o-note__text {
+  background-color: rgba(211, 232, 255, 0.38);
+}
+
+.c-add-client {
+  width: max-content;
+  margin: 10px auto;
+  display: grid;
+  grid: 26px 26px/400px 180px 220px 30px;
+  grid-gap: 2px;
+  background-color: rgba(103, 143, 86, 0.44);
+  padding: 2px;
+}
+.c-add-client__address {
+  grid-column: 1/4;
+}
+.c-add-client__region {
+  grid-column: 3/5;
+}
+.c-add-client__save {
+  background-color: #95c684;
+}
+
+.c-search {
+  width: 550px;
+  margin: 10px auto;
+  display: flex;
+  background-color: rgba(208, 208, 0, 0.21);
+  padding: 2px;
+  justify-content: space-between;
+  align-items: center;
+}
+.c-search__address {
+  margin-left: 2px;
+}
+
+.c-client {
+  display: grid;
+  grid: 26px 26px/135px 200px 30px auto;
+  grid-gap: 2px;
+  padding: 2px;
+  background-color: rgba(181, 143, 4, 0.19);
+  margin: 5px auto;
+}
+.c-client * {
+  font-weight: 600;
+}
+.c-client__name {
+  grid-column: 1/3;
+  background-color: rgba(181, 143, 4, 0.19);
+  border: none;
+}
+.c-client__address {
+  grid-row: 1/3;
+  grid-column: 4;
+}
+.c-client__save {
+  background-color: #95c684;
+  cursor: pointer;
+}
+.c-client__zone {
+  grid-column: 2/4;
+}
+
+.c-add-car,
+.c-car {
+  display: grid;
+  padding: 1px;
+}
+
+.c-add-car {
+  grid: 26px/120px 90px 90px 57px 57px 57px 78px 235px auto 30px;
+  background-color: rgba(103, 143, 86, 0.44);
+  margin: 20px auto;
+}
+.c-add-car * {
+  border: 2px rgba(103, 143, 86, 0.44) solid;
+}
+.c-add-car__save {
+  background-color: #95c684;
+}
+
+.c-car {
+  grid: 26px/120px 90px 90px 57px 57px 57px 78px 225px 55px auto 30px 30px;
+  margin: 5px auto;
+  background-color: #dae3e7;
+  font-size: 18px;
+}
+.c-car__edit {
+  background-color: #95c684;
+}
+.c-car__delete {
+  background-color: #ea4656;
+}
+
+.c-login {
+  display: grid;
+  grid: repeat(5, 30px)/120px 150px;
+  grid-row-gap: 20px;
+  margin: 150px auto;
+  width: max-content;
+  padding: 20px;
+  background-color: #cdc0b1;
+}
+.c-login * {
+  font-size: 20px;
+  font-weight: 600;
+}
+.c-login__login-btn {
+  grid-column: 1/3;
+  height: 40px;
+  padding-bottom: 6px;
+}
+
+@media (width: 360px) {
+  .c-nav__lists {
+    padding: 0;
+    width: 350px;
+  }
+  .c-nav__list {
+    width: 88px;
+  }
+  .c-nav__link {
+    width: auto;
+  }
+
+  .c-add-event {
+    grid: 26px 26px/172px 130px 38px;
+    width: auto;
+  }
+
+  .c-event {
+    grid: 26px 26px 26px/162px 68px 68px 40px;
+  }
+  .c-event__name {
+    grid-column: 1/5;
+  }
+  .c-event__category {
+    grid-column: 2/4;
+  }
+}
+@media screen and (min-width: 361px) and (max-width: 520px) {
+  .c-event,
+.c-add-event,
+.c-message {
+    display: flex;
+    flex-wrap: wrap;
+    width: auto;
+  }
+}
+@media screen and (min-width: 521px) and (max-width: 600px) {
+  .c-event {
+    grid-template-rows: repeat(3, 26px);
+    grid-template-columns: repeat(12, minmax(20px, 1fr));
+  }
+  .c-event__name {
+    grid-column: 1/13;
+  }
+  .c-event__date {
+    grid-column: 1/6;
+  }
+  .c-event__category {
+    grid-column: 6/11;
+  }
+  .c-event__days-remaining {
+    grid-column: 11/13;
+  }
+  .c-event__time-remaining {
+    grid-column: 1/4;
+  }
+  .c-event__edit {
+    grid-column: 8/10;
+  }
+  .c-event__delete {
+    grid-column: 10/12;
+  }
+
+  .c-add-event {
+    grid: 26px 26px/40px 150px 140px 40px;
+  }
+  .c-add-event__name {
+    grid-column: 1/5;
+  }
+}
+@media screen and (min-width: 601px) and (max-width: 800px) {
+  .c-event {
+    grid-template-columns: repeat(12, minmax(40px, 1fr));
+  }
+  .c-event__name {
+    grid-column: 1/9;
+  }
+  .c-event__date {
+    grid-column: 9/13;
+  }
+  .c-event__category {
+    grid-column: 1/4;
+  }
+  .c-event__time-remaining {
+    grid-column: 5/8;
+  }
+}
+@media screen and (min-width: 801px) and (max-width: 1000px) {
+  .c-event {
+    grid-template-columns: repeat(12, minmax(50px, 1fr));
+  }
+  .c-event__name {
+    grid-column: 1/10;
+  }
+  .c-event__date {
+    grid-column: 10/13;
+  }
+  .c-event__category {
+    grid-column: 1/4;
+  }
+  .c-event__days-remaining {
+    grid-column: 4/5;
+  }
+  .c-event__time-remaining {
+    grid-column: 5/8;
+  }
+  .c-event__edit {
+    grid-column: 8/10;
+  }
+  .c-event__delete {
+    grid-column: 10/12;
+  }
+  .c-event__hide-img {
+    grid-column: 12/13;
+  }
+}
+@media (max-width: 500px) {
+  .c-add-client {
+    grid: 26px 26px 26px/130px 180px 30px;
+    width: auto;
+  }
+  .c-add-client__name {
+    grid-column: 1/3;
+    order: -2;
+  }
+  .c-add-client__region {
+    grid-column: 2/4;
+  }
+  .c-add-client__save {
+    order: -1;
+  }
+}
+@media (max-width: 700px) {
+  .c-search {
+    display: block;
+    width: max-content;
+  }
+  .c-search__address {
+    margin-left: 0;
+  }
+
+  .c-client {
+    grid: 26px 26px 20px 20px/135px auto 30px;
+  }
+  .c-client__address {
+    grid-column: 1/4;
+    grid-row: 3/5;
+  }
+}
+@media screen and (min-width: 501px) and (max-width: 900px) {
+  .c-add-client {
+    grid: 26px 26px 26px/180px auto 30px;
+    width: auto;
+  }
+  .c-add-client__name {
+    grid-column: 1/3;
+  }
+  .c-add-client__region {
+    grid-column: 2/4;
+  }
+  .c-add-client__save {
+    grid-column: 3/4;
+    grid-row: 1;
+  }
+}
+@media (max-width: 360px) {
+  .c-add-car {
+    grid: auto/repeat(3, 33.33%);
+  }
+  .c-add-car__name {
+    grid-column: 1/4;
+  }
+  .c-add-car__chassis {
+    grid-column: 1/4;
+  }
+  .c-add-car__info {
+    width: 260%;
+  }
+  .c-add-car__save {
+    width: 39%;
+    grid-column: 3;
+    justify-self: end;
+  }
+}
+@media screen and (min-width: 360px) and (max-width: 1120px) {
+  .c-car {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .c-car__name, .c-car__brand, .c-car__model, .c-car__cubic, .c-car__year, .c-car__power, .c-car__motor, .c-car__chassis {
+    background-color: #dae3e7;
+    border: none;
+  }
+  .c-car__name {
+    width: 130px;
+  }
+  .c-car__brand {
+    width: 100px;
+  }
+  .c-car__model {
+    width: 100px;
+  }
+  .c-car__cubic, .c-car__year, .c-car__power {
+    width: 60px;
+  }
+  .c-car__motor {
+    width: 80px;
+  }
+  .c-car__info {
+    background-color: whitesmoke;
+    width: 346px;
+  }
+  .c-car__kilowatt {
+    font-weight: 600;
+  }
+  .c-car__chassis {
+    order: 1;
+    width: 270px;
+  }
+  .c-car__edit, .c-car__delete {
+    width: 28px;
+  }
+  .c-car__edit {
+    order: 2;
+  }
+  .c-car__delete {
+    order: 3;
+    height: 26px;
+  }
+}
+@media screen and (min-width: 361px) and (max-width: 600px) {
+  .c-add-car {
+    grid: auto/repeat(4, 25%);
+  }
+  .c-add-car__name {
+    grid-column: 1/4;
+  }
+  .c-add-car__chassis {
+    grid-column: 2/5;
+  }
+  .c-add-car__info {
+    grid-column: 1/4;
+  }
+}
+@media screen and (min-width: 601px) and (max-width: 1120px) {
+  .c-add-car {
+    grid: 26px 26px/1fr 75px 75px 45px 40px 50px 75px;
+  }
+  .c-add-car__chassis {
+    grid-column: 1/4;
+  }
+  .c-add-car__info {
+    grid-column: 4/7;
+  }
+}
+
+/*# sourceMappingURL=app.css.map */

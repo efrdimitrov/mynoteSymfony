@@ -1,34 +1,13 @@
+<link rel="stylesheet" href="{{ asset('build/app.css') }}" type="text/css">
+
 {% block body %}
-
-    <div class="">
-        <div class="">
-            <form name="authenticate" class="" action="{{ path('login') }}" method="post">
-                <fieldset>
-                    <legend>Login Form</legend>
-                    {% if error %}
-                        <div class="">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-                    {% endif %}
-                    <div class="">
-                        <label class="" for="user_email">Username</label>
-                        <div class="">
-                            <input aria-label="" value="{{ user.username|default(null) }}" class="" id="user_username" name="_username">
-                        </div>
-                    </div>
-                    <div class="">
-                        <label class="" for="password">Password</label>
-                        <div class="">
-                            <input type="password" class="" id="password" placeholder="Password" name="_password">
-                        </div>
-                    </div>
-                    <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}"/>
-                    <div class="">
-                        <div class="">
-                            <button name="submit_login" type="submit" class="">Login</button>
-                        </div>
-                    </div>
-
-                </fieldset>
-            </form>
-        </div>
-    </div>
+    <form class="c-login bordered" name="authenticate" action="{{ path('login') }}" method="post">
+        <label class="c-login__user" for="user_email">Потребител:</label>
+        <input class="c-login__user-inp" aria-label="" value="{{ user.username|default(null) }}" id="user_username"
+               name="_username" autofocus>
+        <label class="c-login__pass" for="password">Парола:</label>
+        <input class="c-login__pass-inp" type="password" id="password" placeholder="Password" name="_password">
+        <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}"/>
+        <button class="c-login__login-btn" name="submit_login" type="submit">Вход</button>
+    </form>
 {% endblock %}	 

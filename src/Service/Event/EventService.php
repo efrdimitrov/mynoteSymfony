@@ -9,6 +9,7 @@ use App\Entity\Event;
 use App\Repository\EventRepository;
 use Doctrine\ORM\Query\ResultSetMapping;
 use Exception;
+use Symfony\Component\HttpFoundation\Request;
 
 class EventService implements EventServiceInterface
 {
@@ -156,9 +157,7 @@ class EventService implements EventServiceInterface
         }
     }
 
-    /**
-     * @return mixed
-     */
+
     public function changeOfStatusEvent()
     {
         return $this->entityManager->createQuery("

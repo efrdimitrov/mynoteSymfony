@@ -3,41 +3,42 @@
 {% block title %}Събития{% endblock %}
 
 {% block body %}
-    <div class="event-site">
-        <form action="{{ path('create_event') }}" method="post" name="add-event" onsubmit="return Validate()">
-            <div class="add-event" id="add-event">
-                <input class="add-event-name" id="event-name" placeholder="Име" name="event[name]" aria-label="">
-                <input class="add-event-date" type="date" name="event[date]" id="date"
-                       value="{{ "now" | date('Y-m-d') }}"
-                       title="Дата" aria-label="">
-                <select class="add-event-category" name="event[category]" id="category" title="Категория" aria-label="">
+    <div class="o-container">
+        <form action="{{ path('create_event') }}" method="post" name="add-event">
+            <section class="c-add-event bordered" id="add-event">
+                <input class="c-add-event__name" id="event-name" placeholder="Име"
+                       name="event[name]" aria-label="">
+                <input name="event[days_remaining]" placeholder="дни"
+                       type="text"
+                       aria-label=""
+                       title="Предсрочни" id="days-remaining">
+                <article>
+                    <input class="c-add-event__date" type="date" name="event[date]" id="date"
+                           value="{{ "now" | date('Y-m-d') }}"
+                           title="Дата" aria-label="">
+                </article>
+                <select name="event[category]" id="category"
+                        title="Категория" aria-label="">
                     {% for category in categories %}
                         <option>{{ category.name }}</option>
                     {% endfor %}
                 </select>
-                <input class="add-event-days-remaining" name="event[days_remaining]" placeholder="дни" type="text"
-                       aria-label=""
-                       title="Предсрочни" id="days-remaining">
-                <input class="add-event-save" type="submit" name="add_event" value="" aria-label="">
-            </div>
+                <button class="c-add-event__save bordered" type="submit" name="add_event" value=""
+                        aria-label=""></button>
+            </section>
         </form>
 
-
         {% for event in events %}
-
-            {% set eventImg = 'event' %}
-            {% set eventName = 'event-name' %}
-            {% if event.category == 'рожденици' %}
-                {% set eventImg = 'event-birthday' %}
-                {% set eventName = 'event-name-birthday' %}
-            {% elseif event.category == 'именден' %}
-                {% set eventImg = 'event-day' %}
-                {% set eventName = 'event-name-day' %}
-            {% endif %}
-            <form name="authenticate" class="{{ eventImg }}" action="{{ path('edit_event', {id: event.id}) }}) }}"
+            <form name="authenticate" class="c-event bordered"
+                  action="{{ path('edit_event', {id: event.id}) }}) }}"
                   method="post"
                   id="{{ event.id }}">
-                <input class="{{ eventName }}" contenteditable="true" name="event[name]" value="{{ event.name }}"
+                {% set birthday = '' %}
+                {% if event.category == 'рожденици' %}
+                    {% set birthday = 'c-event--birthday' %}
+                {% endif %}
+                <input class="c-event__name {{ birthday }}" contenteditable="true" name="event[name]" type="text"
+                       value="{{ event.name }}"
                        aria-label=""/>
                 {% set event_date = event.date %}
                 {% set current_year = "now" | date('Y') %}
@@ -49,8 +50,11 @@
                         {% set date = event_date | date(next_year ~ '-m-d') %}
                     {% endif %}
                 {% endif %}
-                <input class="date" type="date" name="event[date]" value="{{ date }}" aria-label=""/>
-                <select name="event[category]" aria-label="">
+                <article>
+                    <input class="c-event__date" type="date" name="event[date]" value="{{ date }}"
+                           aria-label=""/>
+                </article>
+                <select class="c-event__category" name="event[category]" aria-label="">
                     {% for category in categories %}
                         {% set selected = '' %}
                         {% if (category.name) == event.category %}
@@ -59,7 +63,9 @@
                         <option value="{{ category.name }}" {{ selected }}>{{ category.name }}</option>
                     {% endfor %}
                 </select>
-
+                <input class="c-event__days-remaining" name="event[days_remaining]"
+                       value="{{ event.daysRemaining }}"
+                       aria-label="">
                 {% set date_event_current_year = event_date | date('d.m.') ~ "now" | date('Y') %}
                 {% set next_year = "now" | date('Y', timezone="Europe/Sofia") + 1 %}
                 {% set date_next_year = event_date | date('d.m.') ~ next_year %}
@@ -68,17 +74,16 @@
                     {% set day_of_week = date_event_current_year %}
                 {% endif %}
 
-                <div style="display: inline-block" title="{{ day_of_week | date('D') }}">
+                <div class="c-event__time-remaining" title="{{ day_of_week | date('D') }}">
                     {{ include('event_time_remaining.twig') }}
                 </div>
-                <input class="days-remaining" name="event[days_remaining]" value="{{ event.daysRemaining }}"
-                       aria-label="">
-                <a class="event-edit" onclick="document.getElementById('{{ event.id }}').submit();">запиши</a>
-                <a class="event-delete" href="{{ path('delete_event', { id: event.id}) }}"
+                <a class="c-event__edit bordered"
+                   onclick="document.getElementById('{{ event.id }}').submit();">запиши</a>
+                <a class="c-event__delete bordered" href="{{ path('delete_event', { id: event.id}) }}"
                    onclick="return confirm('Изтрий {{ event.name }}')">изтрий</a>
-                <a style="text-decoration:none;" href="{{ path('hide_event', { id: event.id}) }}" title="Скрий"
+                <a class="c-event__hide-img" href="{{ path('hide_event', { id: event.id}) }}" title="Скрий"
                    onclick="return confirm('Скрий {{ event.name }}')">
-                    <img class="hide-img" alt="Скрий" src="{{ asset('img/hide.png') }}">
+                    <img alt="Скрий" src="{{ asset('img/hide.png') }}">
                 </a>
 
             </form>

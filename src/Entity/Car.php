@@ -38,12 +38,12 @@ class Car
     private $cubic;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="string")
      */
     private $power;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="string", length=6)
      */
     private $year;
 
@@ -58,7 +58,7 @@ class Car
     private $chassis;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="string", length=6)
      */
     private $kilowatt;
 
@@ -120,24 +120,24 @@ class Car
         return $this;
     }
 
-    public function getPower(): ?int
+    public function getPower(): ?string
     {
         return $this->power;
     }
 
-    public function setPower(int $power): self
+    public function setPower(string $power): self
     {
         $this->power = $power;
 
         return $this;
     }
 
-    public function getYear(): ?int
+    public function getYear(): ?string
     {
         return $this->year;
     }
 
-    public function setYear(int $year): self
+    public function setYear(string $year): self
     {
         $this->year = $year;
 

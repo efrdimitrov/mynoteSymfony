@@ -1,0 +1,15 @@
+@import "../settings/_settings-color.scss";
+
+.o-note {
+  &__save {
+    position: relative;
+    top: 22px;
+    left: 0;
+    background-color: $textarea-btn;
+    font-weight: 600;
+  }
+
+  &__text {
+    background-color: $textarea-color;
+  }
+}

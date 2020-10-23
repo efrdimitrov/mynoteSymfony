@@ -9,7 +9,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
     <link rel="icon" type="image/x-icon" href="{{ asset('img/favicon.ico') }}"/>
-    <link rel="stylesheet" href="{{ asset('css/site.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ asset('build/app.css') }}" type="text/css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <title>{% block title %} Събития {% endblock %}</title>
@@ -22,37 +22,45 @@
     {% set current_page_client = 'li' %}
     {% set current_page_car = 'li' %}
 
-    {% if app.request.get('_route') == 'events' or app.request.get('_route') == 'index' %}
-        {% set current_page_event = 'site-nav-current-page-event' %}
+    {% set route_client = 'client' in app.request.get('_route') %}
+    {% set route_car = 'car' in app.request.get('_route') %}
+
+    {% if app.request.get('_route') == 'events' or app.request.get('_route') == 'index' or
+        app.request.get('_route') == 'create_event' %}
+        {% set current_page_event = 'c-nav__current' %}
+        {% set current_page = 'checked_event' %}
     {% elseif app.request.get('_route') == 'notes' %}
-        {% set current_page_note = 'site-nav-current-page-note' %}
-    {% elseif app.request.get('_route') == 'clients' %}
-        {% set current_page_client = 'site-nav-current-page-client' %}
-    {% elseif app.request.get('_route') == 'cars' %}
-        {% set current_page_car = 'site-nav-current-page-car' %}
+        {% set current_page_note = 'c-nav__current' %}
+        {% set current_page = 'checked_note' %}
+    {% elseif route_client == true %}
+        {% set current_page_client = 'c-nav__current' %}
+        {% set current_page = 'checked_client' %}
+    {% elseif route_car == true %}
+        {% set current_page_car = 'c-nav__current' %}
+        {% set current_page = 'checked_car' %}
     {% endif %}
-    <div class="site">
-        <nav class="site-nav">
-            <ul>
-                <li class="{{ current_page_event }}">
-                    <a href="{{ path('events') }}">СЪБИТИЯ</a>
+    <div class="c-site">
+        <nav class="c-nav">
+            <ul class="c-nav__lists">
+                <li class="c-nav__list {{ current_page_event }} ">
+                    <a class="c-nav__link" href="{{ path('events') }}">СЪБИТИЯ</a>
                 </li>
-                <li class="{{ current_page_note }}">
-                    <a href="{{ path('notes') }}">БЕЛЕЖКИ</a>
+                <li class="c-nav__list {{ current_page_note }}">
+                    <a class="c-nav__link" href="{{ path('notes') }}">БЕЛЕЖКИ</a>
                 </li>
-                <li class="{{ current_page_client }}">
-                    <a href="{{ path('clients') }}">КЛИЕНТИ</a>
+                <li class="c-nav__list {{ current_page_client }}">
+                    <a class="c-nav__link" href="{{ path('clients') }}">КЛИЕНТИ</a>
                 </li>
-                <li class="{{ current_page_car }}">
-                    <a href="{{ path('cars') }}">КОЛИ</a>
+                <li class=" c-nav__list {{ current_page_car }}">
+                    <a class="c-nav__link" href="{{ path('cars') }}">КОЛИ</a>
+                </li>
+                <li class="c-nav__logout">
+                    {% if app.user %}
+                        <a class="logout-btn" href="{{ path('security_logout') }}"><img src="{{ asset('/img/logout.png') }}" alt="logout" title="Изход"></a>
+                    {% endif %}
                 </li>
             </ul>
         </nav>
-        <div style="padding: 25px"></div>
-        {% if app.user %}
-            <a class="logout-btn" href="{{ path('security_logout') }}">LOGOUT</a>
-        {% endif %}
-
         {{ include('message_event.html.twig') }}
         {{ include('telephone.html.twig') }}
 
@@ -64,9 +72,7 @@
         {% endblock %}
     </div>
 {% else %}
-    <a href="{{ path('login') }}">
-        LOGIN
-    </a>
+    {{ include('security/login.html.twig') }}
 {% endif %}
 </body>
 </html>

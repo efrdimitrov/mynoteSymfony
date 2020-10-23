@@ -1,42 +1,11 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}Клиенти{% endblock %}
-
-{% block body %}
-
-    <form name="authenticate" action="{{ path('create_client') }}" class="add-client" method="post">
-        <input class="add-client-name" placeholder="Добави сервиз" name="client[name]" aria-label="">
-        <select class="add-client-zone" name="client[zone]" aria-label="">
-            <option value="">Избери Зона</option>
-            <option>Нови Искър</option>
-            <option>Дясно</option>
-            <option>Костинброд</option>
-            <option>Ляво</option>
-            <option>Помощна</option>
-            <option>Селата</option>
-        </select>
-        <input class="add-client-region" name="client[region]" placeholder="Регион" aria-label="">
-        <input class="add-client-save" type="submit" name="add_client" value="">
-        <input class="add-client-address" name="client[address]" placeholder="Адрес" aria-label="">
-    </form>
-
-    <div class="search">
-        <form class="search-client" role="search" method="get" action="{{ path('search_clients') }}">
-            <input type="text" class="search-client-inp" name="search_clients" value="" placeholder="клиент" aria-label="">
-            <button type="submit" class="search-client-btn" name="sub">търси</button>
-        </form>
-
-        <form class="search-address" role="search" method="get" action="{{ path('search_address') }}">
-            <input type="text" class="search-address-inp" name="search_address" value="" placeholder="описание" aria-label="">
-            <button type="submit" class="search-address-btn" name="sub">търси</button>
-        </form>
-    </div>
-
-    {% for client in clients %}
-        <form class="client" action="{{ path('edit_client', {id: client.id}) }}) }}" method="post" id="my_form">
-            <input name="client[name]" value="{{ client.name }}" class="client-name" aria-label="">
-            <select name="client[zone]" class="client-zone" aria-label="">
-                <option>{{ client.zone }}</option>
+    {% block body %}
+        <form class="c-add-client o-container bordered" name="authenticate" action="{{ path('create_client') }}" method="post">
+            <input class="c-add-client__name" placeholder="Добави сервиз" name="client[name]" aria-label="">
+            <select class="add-client-zone" name="client[zone]" aria-label="">
+                <option value="">Избери Зона</option>
                 <option>Нови Искър</option>
                 <option>Дясно</option>
                 <option>Костинброд</option>
@@ -44,11 +13,42 @@
                 <option>Помощна</option>
                 <option>Селата</option>
             </select>
-            <input name="client[region]" value="{{ client.region }}" class="client-region" aria-label="">
-            <input class="client-save" type="submit" name="add_client" value="" aria-label="">
-            <textarea class="client-address" name="client[address]" aria-label="">{{ client.address }}</textarea>
+            <input class="c-add-client__region" name="client[region]" placeholder="Регион" aria-label="">
+            <input class="c-add-client__address" name="client[address]" placeholder="Адрес" aria-label="">
+            <button class="c-add-client__save bordered" type="submit"></button>
         </form>
 
-    {% endfor %}
+        <div class="c-search bordered o-container">
+            <form class="c-search__client" role="search" method="get" action="{{ path('search_clients') }}">
+                <input type="text" class="search-client-inp" name="search_clients" value="" placeholder="клиент"
+                       aria-label="" autocomplete="off">
+                <button type="submit" class="search-client-btn" name="sub">търси</button>
+            </form>
 
-{% endblock %}
+            <form class="c-search__address" role="search" method="get" action="{{ path('search_address_client') }}">
+                <input type="text" class="search-address-inp" name="search_address" value="" placeholder="описание"
+                       aria-label="" autocomplete="off">
+                <button type="submit" class="search-address-btn">търси</button>
+            </form>
+        </div>
+
+        {% for client in clients %}
+            <form class="c-client o-container bordered" action="{{ path('edit_client', {id: client.id}) }}) }}" method="post" id="my_form">
+                <input class="c-client__name" name="client[name]" value="{{ client.name }}" aria-label="">
+                <textarea class="c-client__address" name="client[address]"
+                          aria-label="">{{ client.address }}</textarea>
+                <button class="c-client__save bordered" type="submit" name="add_client"></button>
+                <input class="c-client__region" name="client[region]" value="{{ client.region }}" aria-label="">
+                <select name="client[zone]" class="c-client__zone" aria-label="">
+                    <option>{{ client.zone }}</option>
+                    <option>Нови Искър</option>
+                    <option>Дясно</option>
+                    <option>Костинброд</option>
+                    <option>Ляво</option>
+                    <option>Помощна</option>
+                    <option>Селата</option>
+                </select>
+            </form>
+
+        {% endfor %}
+    {% endblock %}

@@ -1,0 +1,8 @@
+@import "../settings/_settings-color.scss";
+
+.c-message {
+  display: grid;
+  grid-template-columns: auto 150px 110px 150px 30px;
+  background-color: $message-color;
+  padding-left: 10px;
+}

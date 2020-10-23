@@ -76,7 +76,7 @@ class SearchController extends AbstractController
     }
 
     /**
-     * @Route("/search_address", name="search_address")
+     * @Route("/search_address_client", name="search_address_client")
      * @param Request $request
      * @return Response
      */

@@ -5,15 +5,14 @@
 {% block body %}
     {% for note in notes %}
 
-        <form class="note" action="{{ path('edit_note', {id: note.id}) }}) }}" method="post">
-            <button typpe="submit" class="note-title">{{ note.title }}</button>
+        <form class="o-note o-container" action="{{ path('edit_note', {id: note.id}) }}) }}" method="post">
+            <button class="o-note__save bordered" typpe="submit" class="note-title">{{ note.title }}</button>
             {% set id = note.id %}
-            <textarea rows="1" id="id" class="note-area" name="note[content]">{{ note.content }}</textarea>
+            <textarea rows="1" id="id" class="o-note__text o-container bordered" name="note[content]">{{ note.content }}</textarea>
             <input type="hidden" name="note[change_date]" value="{{ "now" | date('U') }}">
         </form>
 
     {% endfor %}
-
     <div class="other-notes">
         {% for other_note in others_notes %}
             <span style="width: 100%; min-height: auto; box-sizing: content-box;

@@ -108,4 +108,16 @@ class NoteController extends AbstractController
                 'events' => $events,
             ]);
     }
+
+    /**
+     * @Route("/checked_note/{id}", name="checked_note")
+     *
+     * @param int $id
+     * @return Response
+     */
+    public function checkedNote(int $id)
+    {
+        $this->eventService->checkedEventProcess($id);
+        return $this->redirectToRoute("notes");
+    }
 }

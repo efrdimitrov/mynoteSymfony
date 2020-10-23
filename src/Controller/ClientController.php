@@ -43,8 +43,8 @@ class ClientController extends AbstractController
      * @param EntityManagerInterface $entityManager
      * @param MessageServiceInterface $messageService
      */
-    public function __construct(EventService $eventService,
-                                ClientServiceInterface $clientService,
+    public function __construct(ClientServiceInterface $clientService,
+                                EventService $eventService,
                                 EntityManagerInterface $entityManager,
                                 MessageServiceInterface $messageService)
     {
@@ -119,6 +119,18 @@ class ClientController extends AbstractController
                 'form' => $form->createView(),
                 'client' => $client,
             ]);
+    }
+
+    /**
+     * @Route("/checked_client/{id}", name="checked_client")
+     *
+     * @param int $id
+     * @return Response
+     */
+    public function checkedClient(int $id)
+    {
+        $this->eventService->checkedEventProcess($id);
+        return $this->redirectToRoute("clients");
     }
 
 }

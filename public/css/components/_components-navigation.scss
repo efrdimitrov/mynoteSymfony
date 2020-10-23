@@ -1,0 +1,54 @@
+@import "../settings/_settings-color.scss";
+
+.c-nav {
+  background-color: $nav-color;
+  border-bottom: 2px inset $border-color;
+
+  &__lists {
+    display: flex;
+    width: 440px;
+    margin: 0 auto;
+  }
+
+  &__list {
+    width: auto;
+    text-align: center;
+  }
+
+  &__list:hover {
+    a {
+      color: #42bc00;
+      background-color: $add-color;
+    }
+  }
+
+  &__current {
+    background-color: $body-color;
+    border-top: 2px solid $border-color;
+    border-right: 2px solid $border-color;
+    border-left: 2px solid $border-color;
+    box-shadow: 0 4px 0 -2px $body-color;
+  }
+
+  &__link {
+    color: $text-gray;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 40px;
+    width: auto;
+    padding: 0 5px;
+  }
+
+  &__logout {
+    align-self: center;
+    padding: 0 5px;
+    opacity: 0.4;
+  }
+
+  &__logout:hover {
+    opacity: 1;
+  }
+
+}

@@ -1,0 +1,37 @@
+@import "../settings/_settings-color.scss";
+
+.c-add-car,
+.c-car {
+  display: grid;
+  //grid-gap: 2px;
+  padding: 1px;
+}
+
+.c-add-car {
+  grid: 26px / 120px 90px 90px 57px 57px 57px 78px 235px auto 30px;
+  background-color: $add-client;
+  margin: 20px auto;
+
+  * {
+    border: 2px $add-client solid;
+  }
+
+  &__save {
+    background-color: $save-color;
+  }
+}
+
+.c-car {
+  grid: 26px / 120px 90px 90px 57px 57px 57px 78px 225px 55px auto 30px 30px;
+  margin: 5px auto;
+  background-color: $cars;
+  font-size: 18px;
+
+  &__edit {
+    background-color: $save-color;
+  }
+
+  &__delete {
+    background-color: $delete-color;
+  }
+}

@@ -3,13 +3,11 @@
     {% set category = telephone[0].getCategory %}
     {% set date_telephone = telephone[0].getDate | date('U') %}
     {% if( category == 'неплатен' ) %}
-        <article>
-            <form method="post" class="telephone">
+            <form method="post" class="c-telephone o-messages">
                 {{ 'Виваком' }}
                 {{ 'остават: ' ~ days_remaining ~ ' дни  ' }}
                 <a class="telephone-button-pay" href="{{ path('pay_telephone', { id: 234}) }}" title="Плати">плати</a>
             </form>
-        </article>
     {% endif %}
 
 {% endblock %}

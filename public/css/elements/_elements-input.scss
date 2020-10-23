@@ -1,0 +1,20 @@
+@import "../settings/_settings-color.scss";
+
+input,
+textarea,
+select {
+  border-radius: 3px;
+  border: 1px solid;
+  font-weight: 600;
+  padding-left: 4px;
+  height: 26px;
+}
+
+input:focus,
+textarea:focus,
+select:focus,
+input:hover,
+textarea:hover,
+select:hover {
+  background-color: $input-color;
+}

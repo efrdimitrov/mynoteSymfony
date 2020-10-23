@@ -1,4 +1,4 @@
-<article class="main-message">
+<article>
     {% for view_event in view_events %}
 
         {% set year_is_leap_event = view_event.date | date('L') %}
@@ -14,20 +14,23 @@
         {% endif %}
 
         {% if diff_days >= -1 and (diff_days <= 2 or days_remaining >= diff_days - year_is_leap_event) %}
-            <div class="message">
-                <div class="message-name">
+            <section class="c-message o-messages o-container">
+                <article class="message__name">
                     {{ view_event.name }}
-                </div>
-                <div class="message-date">
+                </article>
+                <article>
+                    {{ view_event.category }}
+                </article>
+                <article class="message__date">
                     {% if view_event.date|date('Y') == 1900 %}
                         {{ view_event.date|date('d.m') }}
-                    {% elseif view_event.category == 'ежегодни' or view_event.category != 'именден' %}
-                            {{ view_event.date|date('d.m.') ~ "now"|date('Y') }}
+                    {% elseif view_event.category == 'ежегодни' or view_event.category == 'именден' %}
+                        {{ view_event.date|date('d.m.') ~ "now"|date('Y') }}
                     {% else %}
                         {{ view_event.date|date('d.m.Y') }}
                     {% endif %}
-                </div>
-                <div class="message-much-time">
+                </article>
+                <article class="message__much-time">
                     {% if "now"|date('m-d') == view_event.date|date('m-d') %}
                         {{ 'днес' }}
                     {% elseif diff_days == 2 %}
@@ -43,13 +46,15 @@
                     {% elseif diff_days > 0 and view_event.daysRemaining > 0 %}
                         {{ 'остават: ' ~ diff_days ~ 'дни' }} ({{ view_event.daysRemaining }})
                     {% endif %}
-                </div>
-                <a style="text-decoration:none; height: 40px;" href="{{ path('checked_event', { id: view_event.id}) }}"
-                   title="Отметни"
-                   onclick="return confirm('Отметни {{ view_event.name }}')">
-                    <i class="fa fa-check-square" style="font-size:24px; color:green; padding: 0.1em 0;"></i>
-                </a>
-            </div>
+                </article>
+                <article>
+                    <a style="height: 40px;" href="{{ path( current_page, { id: view_event.id}) }}"
+                       title="Отметни"
+                       onclick="return confirm('Отметни {{ view_event.name }}')">
+                        <i class="fa fa-check-square" style="font-size:24px; color:green; padding: 0.1em 0;"></i>
+                    </a>
+                </article>
+            </section>
         {% endif %}
     {% endfor %}
 </article>

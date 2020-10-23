@@ -1,0 +1,22 @@
+@import "../settings/_settings-color.scss";
+
+.c-login {
+  display: grid;
+  grid: repeat(5, 30px) / 120px 150px;
+  grid-row-gap: 20px;
+  margin: 150px auto;
+  width: max-content;
+  padding: 20px;
+  background-color: $login-form;
+
+  * {
+    font-size: 20px;
+    font-weight: 600;
+  }
+
+  &__login-btn {
+    grid-column: 1/3;
+    height: 40px;
+    padding-bottom: 6px;
+  }
+}

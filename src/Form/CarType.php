@@ -5,7 +5,7 @@ namespace App\Form;
 
 
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\NumberType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 
 class CarType extends AbstractType
@@ -20,7 +20,14 @@ class CarType extends AbstractType
             ->add('power')
             ->add('year')
             ->add('motor')
-            ->add('chassis')
-            ->add('info');
+            ->add('kilowatt', TextType::class, [
+                'empty_data' => NULL
+            ])
+            ->add('chassis', TextType::class, [
+                'empty_data' => ''
+            ])
+            ->add('info', TextType::class, [
+                'empty_data' => ''
+            ]);
     }
 }
